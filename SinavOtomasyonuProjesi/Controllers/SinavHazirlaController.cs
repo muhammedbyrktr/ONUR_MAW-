@@ -72,7 +72,6 @@ namespace SinavOtomasyonuProjesi.Controllers
              foreach(var i in soru)
             {
                 _soru.Sid = i.Sid;
-               
                 _soru.Spuan = i.Spuan;
                 _soru.Smetni = i.Smetni;
                 _soru.Sturu = i.Sturu;
