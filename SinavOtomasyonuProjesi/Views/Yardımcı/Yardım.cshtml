@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Yardım";
+   
+}
+
+
+<div align="center">
+    <video id="video" poster="Content/img/logotrakya.png" controls>
+        <source src="video/AykutElmas.mp4" type="video/mp4">
+
+        Üzgünüz, Tarayıcınız bu videoyu desteklemıyor!
+    </video>
+    
+</div> 
+
+<a href="@Url.Action("Index","Posts")" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-arrow-left"></i>  Giriş Yap</a>
+<a href="@Url.Action("CreateUser","Posts")" class="btn btn-sm  btn-primary"><i class="glyphicon glyphicon-plus"></i>Kaydol</a>
+
+

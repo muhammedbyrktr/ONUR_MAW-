@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="shortcut icon" href="Content/img/SinavOto.ico">
+    <link href="Content/responsive.css" rel="stylesheet">
+    <link href="Content/main.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+</head>
+
+<body style="font-size: 14px;background: url(Content/img/background.png)">
+    
+    
+    <section id="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="hit-the-floor">Sınav Otomasyonu</div>
+            </div>
+            <div class="col-sm-6" align="right">
+            <a href="@Url.Action("Index","Posts")"><img src="Content/img/logotrakya.png" alt="logo"></a></div>
+        </div>
+        
+        @RenderBody()
+        <footer class="footer-distributed">
+            <div class="footer-left">
+                <h3>Yardıma İhtiyacım Var</h3>
+                <p class="footer-links">
+                    <a href="@Url.Action("Yardım","Yardımcı")">Yardım</a>   
+                    ·
+                    <a href="@Url.Action("Gizlilik_İlkeleri", "Yardımcı")">Gizlilik İlkeleri</a>
+                    ·
+                    <a href="@Url.Action("Koşullar","Yardımcı")">Kullanım Koşulları</a>          
+                </p>
+               
+            </div>
+            <div class="footer-center">
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span>Ahmet Karadeniz Yerleşkesi</span> Edirne, MERKEZ</p>
+                </div>
+              
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="@Url.Action("İletişim","Yardımcı")">SinavOtomasyonu@hotmail.com</a></p>
+                </div>
+            </div>
+            <div class="footer-right">
+                <p class="footer-company-about">
+                    <span>Sınav Otomasyonu</span>
+                    Sosyal Sayfalarımızı Beğenip ve Destek Olabilirsiniz!.
+                </p>
+                <div class="footer-icons">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-github"></i></a>
+                </div>
+            </div>
+            <p class="footer-company-name">Trakya Üniversitesi Sınav Otomasyonu &copy; 2016.Tüm hakları saklıdır.</p>
+        </footer>
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+      
+    </section>
+
+</body>
+</html>

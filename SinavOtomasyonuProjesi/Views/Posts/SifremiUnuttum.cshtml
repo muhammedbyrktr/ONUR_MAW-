@@ -1,0 +1,29 @@
+﻿@model SinavOtomasyonuProjesi.ViewModels.SifremiUnuttum
+@using System.Data.Entity
+@using System.Linq
+@{
+    ViewBag.Title = "SifremiUnuttum";
+}
+<h5>@ViewBag.message</h5>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group ">
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <div>
+
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", required = "required", placeholder = "Email" })
+            </div>
+        </div>
+    </div>
+   
+    <div style="margin-top:10px" class="form-group">
+      
+        @Html.ValidationSummary()
+    </div>
+    <button type="submit" class="btn btn-sm  btn-primary"><i class="glyphicon glyphicon-check"></i> Gönder</button>
+    <a href="@Url.Action("CreateUser")" class="btn btn-sm  btn-primary"><i class="glyphicon glyphicon-plus"></i>Kaydol</a>
+    <a href="@Url.Action("Index")" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-arrow-left"></i>  Giriş Yap</a>
+}

@@ -1,0 +1,46 @@
+﻿<div class="col-xs-6 selectContainer">
+    <span class="glyphicon glyphicon-user"></span>
+    <b>Hoş Geldin:</b>
+    <b><strong>@Html.Encode(User.Identity.Name)</strong></b>
+
+    <br><br>
+
+
+    <div class="btn-group-vertical" role="group" aria-label="...">
+        <a href="@Url.Action("Düzenle","Soru")" class="btn btn-sm  btn-info" >Profili Düzenle</a>
+        <a href="@Url.Action("Profilim","Soru")" class="btn btn-sm  btn-info">Profilim</a>
+
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                Soru Ekleme Modülü
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li>@Html.RouteLink("Klasik", "soru")</li>
+                <li>@Html.RouteLink("Doğru Yanlış", "soru2")</li>
+                <li>@Html.RouteLink("Test", "soru1")</li>
+            </ul>
+        </div>
+
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                Soru Listeleme Modülü
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li>@Html.RouteLink("Klasik", "soru5")</li>
+                <li>@Html.RouteLink("Test", "soru8")</li>
+                <li>@Html.RouteLink("Doğru Yanlış", "soru11")</li>
+            </ul>
+        </div>
+        <a href="@Url.Action("DersEkle", "Dersler")" class="btn btn-sm  btn-info">Ders Ekle</a>
+        <a href="@Url.Action("SoruEkle", "SinavHazirla")" class="btn btn-sm  btn-info">Sınav Oluştur</a>
+        <a href="/Logout" class="btn btn-sm  btn-default">Çıkış</a><br>
+    </div>
+
+</div>
+
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

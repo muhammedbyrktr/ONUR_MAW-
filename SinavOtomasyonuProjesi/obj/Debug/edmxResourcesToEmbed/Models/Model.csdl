@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SınavProjesiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cevaplar">
+    <Key>
+      <PropertyRef Name="Cid" />
+    </Key>
+    <Property Name="Cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sid" Type="Int32" Nullable="false" />
+    <Property Name="A" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="B" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="D" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="E" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DogruCevap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SinavKagıdı" Relationship="Self.FK_SinavKagıdı_Cevaplar" FromRole="Cevaplar" ToRole="SinavKagıdı" />
+  </EntityType>
+  <EntityType Name="Dersler">
+    <Key>
+      <PropertyRef Name="D_id" />
+    </Key>
+    <Property Name="D_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ders_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Hoca_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hocalar">
+    <Key>
+      <PropertyRef Name="HocaId" />
+    </Key>
+    <Property Name="HocaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HocaAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HocaSoyadı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ünvanı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Şifresi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SinavKagıdı">
+    <Key>
+      <PropertyRef Name="SınavId" />
+    </Key>
+    <Property Name="SınavId" Type="Int32" Nullable="false" />
+    <Property Name="SoruId" Type="Int32" Nullable="false" />
+    <Property Name="CevapId" Type="Int32" />
+    <NavigationProperty Name="Cevaplar" Relationship="Self.FK_SinavKagıdı_Cevaplar" FromRole="SinavKagıdı" ToRole="Cevaplar" />
+    <NavigationProperty Name="Sorular" Relationship="Self.FK_SinavKagıdı_Sorular" FromRole="SinavKagıdı" ToRole="Sorular" />
+    <NavigationProperty Name="Sinavlar" Relationship="Self.FK_Sinavlar_SinavKagıdı" FromRole="SinavKagıdı" ToRole="Sinavlar" />
+  </EntityType>
+  <EntityType Name="Sinavlar">
+    <Key>
+      <PropertyRef Name="Sınav_id" />
+    </Key>
+    <Property Name="Sınav_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SınavTipi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SınavTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DersAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="S_Hoca_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SinavKagıdı" Relationship="Self.FK_Sinavlar_SinavKagıdı" FromRole="Sinavlar" ToRole="SinavKagıdı" />
+  </EntityType>
+  <EntityType Name="Sorular">
+    <Key>
+      <PropertyRef Name="Sid" />
+    </Key>
+    <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sturu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Smetni" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ders" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="H_id" Type="Int32" Nullable="false" />
+    <Property Name="Spuan" Type="Int32" />
+    <NavigationProperty Name="SinavKagıdı" Relationship="Self.FK_SinavKagıdı_Sorular" FromRole="Sorular" ToRole="SinavKagıdı" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_SinavKagıdı_Cevaplar">
+    <End Role="Cevaplar" Type="Self.Cevaplar" Multiplicity="0..1" />
+    <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cevaplar">
+        <PropertyRef Name="Cid" />
+      </Principal>
+      <Dependent Role="SinavKagıdı">
+        <PropertyRef Name="CevapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SinavKagıdı_Sorular">
+    <End Role="Sorular" Type="Self.Sorular" Multiplicity="0..1" />
+    <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sorular">
+        <PropertyRef Name="Sid" />
+      </Principal>
+      <Dependent Role="SinavKagıdı">
+        <PropertyRef Name="CevapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sinavlar_SinavKagıdı">
+    <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="1" />
+    <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SinavKagıdı">
+        <PropertyRef Name="SınavId" />
+      </Principal>
+      <Dependent Role="Sinavlar">
+        <PropertyRef Name="Sınav_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SınavProjesiEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cevaplar" EntityType="Self.Cevaplar" />
+    <EntitySet Name="Dersler" EntityType="Self.Dersler" />
+    <EntitySet Name="Hocalar" EntityType="Self.Hocalar" />
+    <EntitySet Name="SinavKagıdı" EntityType="Self.SinavKagıdı" />
+    <EntitySet Name="Sinavlar" EntityType="Self.Sinavlar" />
+    <EntitySet Name="Sorular" EntityType="Self.Sorular" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_SinavKagıdı_Cevaplar" Association="Self.FK_SinavKagıdı_Cevaplar">
+      <End Role="Cevaplar" EntitySet="Cevaplar" />
+      <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SinavKagıdı_Sorular" Association="Self.FK_SinavKagıdı_Sorular">
+      <End Role="Sorular" EntitySet="Sorular" />
+      <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sinavlar_SinavKagıdı" Association="Self.FK_Sinavlar_SinavKagıdı">
+      <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
+      <End Role="Sinavlar" EntitySet="Sinavlar" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

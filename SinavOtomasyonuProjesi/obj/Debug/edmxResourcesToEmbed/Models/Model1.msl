@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SınavProjesiModelStoreContainer" CdmEntityContainer="SınavProjesiEntities1">
+    <EntitySetMapping Name="Cevaplar">
+      <EntityTypeMapping TypeName="SınavProjesiModel.Cevaplar">
+        <MappingFragment StoreEntitySet="Cevaplar">
+          <ScalarProperty Name="Cid" ColumnName="Cid" />
+          <ScalarProperty Name="Sid" ColumnName="Sid" />
+          <ScalarProperty Name="A" ColumnName="A" />
+          <ScalarProperty Name="B" ColumnName="B" />
+          <ScalarProperty Name="C" ColumnName="C" />
+          <ScalarProperty Name="D" ColumnName="D" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="DogruCevap" ColumnName="DogruCevap" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dersler">
+      <EntityTypeMapping TypeName="SınavProjesiModel.Dersler">
+        <MappingFragment StoreEntitySet="Dersler">
+          <ScalarProperty Name="D_id" ColumnName="D_id" />
+          <ScalarProperty Name="Ders_Adi" ColumnName="Ders_Adi" />
+          <ScalarProperty Name="Hoca_id" ColumnName="Hoca_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hocalar">
+      <EntityTypeMapping TypeName="SınavProjesiModel.Hocalar">
+        <MappingFragment StoreEntitySet="Hocalar">
+          <ScalarProperty Name="HocaId" ColumnName="HocaId" />
+          <ScalarProperty Name="HocaAdı" ColumnName="HocaAdı" />
+          <ScalarProperty Name="HocaSoyadı" ColumnName="HocaSoyadı" />
+          <ScalarProperty Name="Ünvanı" ColumnName="Ünvanı" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Şifresi" ColumnName="Şifresi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sorular">
+      <EntityTypeMapping TypeName="SınavProjesiModel.Sorular">
+        <MappingFragment StoreEntitySet="Sorular">
+          <ScalarProperty Name="Sid" ColumnName="Sid" />
+          <ScalarProperty Name="Sturu" ColumnName="Sturu" />
+          <ScalarProperty Name="Smetni" ColumnName="Smetni" />
+          <ScalarProperty Name="Ders" ColumnName="Ders" />
+          <ScalarProperty Name="H_id" ColumnName="H_id" />
+          <ScalarProperty Name="Spuan" ColumnName="Spuan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sinavlar">
+      <EntityTypeMapping TypeName="SınavProjesiModel.Sinavlar">
+        <MappingFragment StoreEntitySet="Sinavlar">
+          <ScalarProperty Name="S_Hoca_id" ColumnName="S_Hoca_id" />
+          <ScalarProperty Name="DersAdi" ColumnName="DersAdi" />
+          <ScalarProperty Name="SınavTarihi" ColumnName="SınavTarihi" />
+          <ScalarProperty Name="SınavTipi" ColumnName="SınavTipi" />
+          <ScalarProperty Name="Sınav_id" ColumnName="Sınav_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

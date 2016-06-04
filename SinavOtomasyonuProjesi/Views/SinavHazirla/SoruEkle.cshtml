@@ -1,0 +1,67 @@
+﻿@model SinavOtomasyonuProjesi.Models.Sinavlar
+@using System.Data.Entity
+@using System.Linq
+@{
+    ViewBag.Title = "SoruEkle";
+}
+
+<div class="row">
+    <div class="col-sm-8">
+        <form id="contact-form" action="#" method="post" style=" width: 440px;padding: 20px; position: relative;margin: auto;margin-bottom: 20px;
+    box-shadow: 0 0 10px 2px #1c3564;border-radius: 0 26px;overflow: hidden;background: #afe3c7;">
+            <div class="contact-line">
+                <button class="obligation-button" type="button" style=" width: 200px;height: 26px;line-height: 20px;
+    position: relative;float:initial;font-size: 12px; top: 0;text-align: center;border-radius: 0 8px;
+    background: #0d6636;cursor: pointer;color: white;outline: none;">
+                    <span>Soru Ekleme Modülü</span>
+                </button>
+            </div>
+            <form id="contact-form" action="#" method="post" style=" width: 440px;padding: 40px;right:25px; position: relative;margin: auto;margin-bottom: 20px;
+    box-shadow: 0 0 10px 2px #1c3564;border-radius: 0 26px;overflow: hidden;background-color:whitesmoke">
+
+                @using (Html.BeginForm())
+                {
+                 
+                    @Html.ValidationSummary()
+                    @Html.AntiForgeryToken()
+                    <div class="form-group ">
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
+                            <div>
+
+                                @Html.TextBoxFor(m => m.SınavTipi, new { @class = "form-control", required = "required", placeholder = "Sınav Tipi" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                     <div style="margin-bottom: 25px" class="input-group">
+                       <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                         <div>
+                             @*<input type="date" name="SınavTarihi" size="15" value="2012-05-05">*@
+                           @Html.TextBoxFor(m => m.SınavTarihi, new { @class = "form-control", type="date", required = "required",size="15", value="0000-00-00" })
+                        </div>
+                      </div>
+                   </div>
+                 <div class="contact-col1" style="margin-top: 4px;">
+        <span>
+            Ders &nbsp;
+        </span>
+        @Html.DropDownList("Dersler", "--Ders Girin--")
+        @*@Html.TextBoxFor(m => m.Ders, new { @class = "form-control", required = "required", @placeholder = "Ders girin.." })*@
+    </div>
+                    <button type="submit" class="btn btn-sm  btn-primary">Sınav Oluştur</button>
+               
+                }
+            </form>
+        </form>
+    </div>
+    <div class="col-sm-4">
+        @Html.Partial("PartialKullanici")
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

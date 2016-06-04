@@ -1,0 +1,59 @@
+﻿@model SinavOtomasyonuProjesi.Models.Sorular
+@using System.Data.Entity
+@using System.Linq
+@{
+    ViewBag.Title = "Klasikedit";
+}
+
+<div class="row">
+    <div class="col-sm-8">
+        <form id="contact-form" action="#" method="post" style=" width: 440px;padding: 20px; position: relative;margin: auto;margin-bottom: 20px;
+    box-shadow: 0 0 10px 2px #1c3564;border-radius: 0 26px;overflow: hidden;background: #afe3c7;">
+            <div class="contact-line">
+                <button class="obligation-button" type="button" style=" width: 200px;height: 26px;line-height: 20px;
+    position: relative;float:initial;font-size: 12px; top: 0;text-align: center;border-radius: 0 8px;
+    background: #0d6636;cursor: pointer;color: white;outline: none;">
+                    <span>Klasik Sorusu Düzenleme</span>
+                </button>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary()
+                <div class="contact-line message" style=" position: relative; margin-top: 8px;">
+                    <div class="contact-col2">
+                        @Html.TextAreaFor(m => m.Smetni, new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
+
+                <div class="contact-col1" style="margin-top: 4px;">
+                    <span>
+                        Ders &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+
+                    @Html.TextBoxFor(m => m.Ders, new { @class = "form-control", required = "required" })
+
+                </div>
+
+                <div class="contact-col1" style="margin-top: 4px;">
+                    <span>
+                        Puan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    @Html.TextBoxFor(m => m.Spuan, new { @class = "form-control", required = "required", type = "number", @min = "0", @max = "100"})
+                </div>
+                <div class="contact-line">
+                    <button type="submit" class="btn btn-primary contact-button">
+                        <span>Kaydet</span>
+                    </button>
+                </div>
+                <h5>@ViewBag.message</h5>
+            }
+
+        </form>
+    </div>
+    <div class="col-sm-4">
+        @Html.Partial("PartialKullanici")
+
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿@model SinavOtomasyonuProjesi.ViewModels.EmailForm
+@{
+    ViewBag.Title = "İletişim";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-11">
+            <div class="well well-sm">
+                <form class="form-horizontal" method="post">
+                    <fieldset>
+                        <legend class="text-center header">Öneri ve görüşleriniz için bizimle iletişime geçin</legend>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="İsim" name="İsim" type="text" required="required" placeholder="Lütfen İsminizi Giriniz.!" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input class="form-control" id="Konu" name="Konu" required="required" placeholder="Lütfen Konu Giriniz.!">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", required = "required", placeholder = "Email" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="Tel" name="Tel" type="text" placeholder="Telefon Mecburi Değildir.!" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="Messaj" required="required" name="Messaj" placeholder=" Lütfen Mesajınızı Giriniz.!" rows="7"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Gönder</button>
+                                <h2>@ViewBag.message</h2>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="@Url.Action("Index","Posts")" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-arrow-left"></i>  Giriş Yap</a>
+<a href="@Url.Action("CreateUser", "Posts")" class="btn btn-sm  btn-primary"><i class="glyphicon glyphicon-plus"></i>Kaydol</a>

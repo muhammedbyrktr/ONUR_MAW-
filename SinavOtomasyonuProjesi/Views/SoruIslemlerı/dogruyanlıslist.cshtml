@@ -1,0 +1,78 @@
+﻿@model SinavOtomasyonuProjesi.ViewModels.PageListV
+
+@{
+    ViewBag.Title = "Doğru-YanlışSoruListesi";
+}
+
+<h2>Doğru-YanlışSoruListesi</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th> Sid </th>
+            <th>  Sturu </th>
+            <th> Smetni</th>
+            <th> Ders</th>
+            <th> H_id</th>
+            <th> Spuan </th>
+            <th> DogruCevap </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    @foreach (var item in Model.Sorularımdr._currentItems)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sturu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Smetni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ders)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.H_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Spuan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DogruCevap)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a href="@Url.Action("dogruyanlısedit", "SoruIslemlerı", new { id = item.Sid })" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i>Düzenle</a>
+
+                    <a href="@Url.Action("dogruyanlısdelete", "SoruIslemlerı", new { id = item.Sid }) " class=" btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i>Sil</a>
+                </div>   
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="btn-group pull-right">
+
+    @if (Model.Sorularımdr.HasPreviousPage)
+    {
+        <a href="@Url.Action("dogruyanlıslist", new { page = @Model.Sorularımdr.PreviousPage })" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Previous Page</a>
+    }
+    else
+    {
+        <a href="#" class="btn btn-sm disabled btn-primary"> Previous Page</a>
+    }
+
+    @if (Model.Sorularımdr.HasNextPage)
+    {
+        <a href="@Url.Action("dogruyanlıslist", new { page = @Model.Sorularımdr.NextPage })" class="btn btn-sm btn-primary"> Next Page<i class="glyphicon glyphicon-chevron-right"></i></a>
+    }
+    else
+    {
+        <a href="#" class="btn btn-sm disabled btn-primary"> Next Page</a>
+    }
+</div>

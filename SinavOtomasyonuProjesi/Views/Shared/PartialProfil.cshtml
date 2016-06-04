@@ -1,0 +1,27 @@
+﻿<div class="col-xs-6 selectContainer">
+    <span class="glyphicon glyphicon-user"></span>
+    <b>Hoş Geldiniz</b><br>
+    <b><strong>@Html.Encode(User.Identity.Name)</strong></b>
+    <strong>
+        <a href="/Logout" class="btn btn-danger">Çıkış</a><br>
+    </strong>
+    <br><br>
+    <div class="dropdown">
+        <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">
+            Soru Ekleme Modülü
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>@Html.RouteLink("Klasik", "soru")</li>
+            <li>@Html.RouteLink("Doğru Yanlış", "soru2")</li>
+            <li>@Html.RouteLink("Test", "soru1")</li>
+
+        </ul>
+    </div>
+    <br>
+    <a href="@Url.Action("Düzenle")" class="btn btn-sm  btn-primary">Profili Düzenle</a>
+    <li>@Html.RouteLink("list", "soru5")</li>
+</div>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SınavProjesiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cevaplar">
+    <Key>
+      <PropertyRef Name="Cid" />
+    </Key>
+    <Property Name="Cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sid" Type="int" Nullable="false" />
+    <Property Name="A" Type="nvarchar" MaxLength="50" />
+    <Property Name="B" Type="nvarchar" MaxLength="50" />
+    <Property Name="C" Type="nvarchar" MaxLength="50" />
+    <Property Name="D" Type="nvarchar" MaxLength="50" />
+    <Property Name="E" Type="nvarchar" MaxLength="50" />
+    <Property Name="DogruCevap" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Dersler">
+    <Key>
+      <PropertyRef Name="D_id" />
+    </Key>
+    <Property Name="D_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ders_Adi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Hoca_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hocalar">
+    <Key>
+      <PropertyRef Name="HocaId" />
+    </Key>
+    <Property Name="HocaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HocaAdı" Type="nvarchar" MaxLength="50" />
+    <Property Name="HocaSoyadı" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ünvanı" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Şifresi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sinavlar">
+    <Key>
+      <PropertyRef Name="Sınav_id" />
+    </Key>
+    <Property Name="Sınav_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SınavTipi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SınavTarihi" Type="datetime" Nullable="false" />
+    <Property Name="DersAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="S_Hoca_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sorular">
+    <Key>
+      <PropertyRef Name="Sid" />
+    </Key>
+    <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sturu" Type="nvarchar" MaxLength="50" />
+    <Property Name="Smetni" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ders" Type="nvarchar" MaxLength="50" />
+    <Property Name="H_id" Type="int" Nullable="false" />
+    <Property Name="Spuan" Type="int" />
+  </EntityType>
+  <EntityContainer Name="SınavProjesiModelStoreContainer">
+    <EntitySet Name="Cevaplar" EntityType="Self.Cevaplar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dersler" EntityType="Self.Dersler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hocalar" EntityType="Self.Hocalar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sinavlar" EntityType="Self.Sinavlar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sorular" EntityType="Self.Sorular" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
