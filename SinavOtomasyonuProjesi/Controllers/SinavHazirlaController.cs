@@ -65,11 +65,12 @@ namespace SinavOtomasyonuProjesi.Controllers
         {
             sinav = _sinav;
             List<Soru> listSoru = new List<Soru>();
-            Soru _soru = new Soru();
+         
             int totalPostCount = db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
             var soru=  db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x=>x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
              foreach(var i in soru)
             {
+                Soru _soru = new Soru();
                 _soru.H_id = i.H_id;
                 _soru.Sid = i.Sid;
                 _soru.Spuan = i.Spuan;
