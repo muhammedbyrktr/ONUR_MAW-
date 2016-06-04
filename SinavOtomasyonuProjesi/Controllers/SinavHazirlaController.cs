@@ -29,7 +29,7 @@ namespace SinavOtomasyonuProjesi.Controllers
             ViewData["Dersler"] = derslist;
             return View();
         }
-
+       static Sinavlar _sinav = new Sinavlar();
         [HttpPost]
         public ActionResult SoruEkle(Sinavlar form,string Dersler)
         {
@@ -47,8 +47,6 @@ namespace SinavOtomasyonuProjesi.Controllers
             ViewData["Dersler"] = derslist;
             ViewBag.Ders = Dersler;
              
-            Sinavlar _sinav = new Sinavlar();
-                 
             _sinav.S_Hoca_id = hid;
             _sinav.SınavTipi = form.SınavTipi.Trim();
             _sinav.SınavTarihi = form.SınavTarihi;
@@ -57,7 +55,7 @@ namespace SinavOtomasyonuProjesi.Controllers
             //db.SaveChanges();
 
 
-        return RedirectToRoute("SinavList", _sinav);
+        return RedirectToRoute("SinavList");
         }
 
          private   SınavProjesiEntities1 db = new SınavProjesiEntities1();
@@ -65,12 +63,14 @@ namespace SinavOtomasyonuProjesi.Controllers
 
         public ActionResult SinavList(Sinavlar sinav, int page = 1)
         {
+            sinav = _sinav;
             List<Soru> listSoru = new List<Soru>();
             Soru _soru = new Soru();
             int totalPostCount = db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
             var soru=  db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x=>x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
              foreach(var i in soru)
             {
+                _soru.H_id = i.H_id;
                 _soru.Sid = i.Sid;
                 _soru.Spuan = i.Spuan;
                 _soru.Smetni = i.Smetni;
