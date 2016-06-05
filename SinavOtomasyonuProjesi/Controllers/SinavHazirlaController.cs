@@ -185,7 +185,7 @@ namespace SinavOtomasyonuProjesi.Controllers
         }
 
     
-        public ActionResult SinavKagıdı()
+        public ActionResult Sinavolustur()
         {
             return View();
         }
