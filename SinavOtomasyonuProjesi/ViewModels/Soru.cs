@@ -12,6 +12,10 @@ namespace SinavOtomasyonuProjesi.ViewModels
     public class sinavkagıdı { 
     public IEnumerable<SinavKagıdı> Sinavkagıdım { get; set; }
     }
+    public class Sınavlarr
+    {
+        public List< Sinavlar> Sinavlar { get; set; }
+    }
     public class Soru
     {
         public int Sid { get; set; }

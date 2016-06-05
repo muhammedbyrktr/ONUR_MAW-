@@ -60,7 +60,7 @@ namespace SinavOtomasyonuProjesi.Controllers
 
         private SınavProjesiEntities1 db = new SınavProjesiEntities1();
         private static int postsPerPage = 5;
-     public static   sinavkagıdı sinavkagıdım = new sinavkagıdı();
+        private static Models.Sinavlar sinavım =new Models.Sinavlar();
         public ActionResult SinavList(Sinavlar sinav, PageListV form, FormCollection button , bool k=false, bool d = false, bool t = false, int page = 1)
         {
             sinav = _sinav;
@@ -89,10 +89,10 @@ namespace SinavOtomasyonuProjesi.Controllers
                   
                     db.SinavKagıdı.Add(Sınav);
                     db.SaveChanges();
-                    //sinavkagıdım.Sinavkagıdım.Add(Sınav);
+                   
                    
                 }
-          Sinavlar si=db.Sinavlar.OrderBy(x => x.SınavTarihi).FirstOrDefault();
+                sinavım = db.Sinavlar.Where(x => x.Sınav_id == _sinav.Sınav_id).SingleOrDefault();
                 return null;
             }
             else { 
