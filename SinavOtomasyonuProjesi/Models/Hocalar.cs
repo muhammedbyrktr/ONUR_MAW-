@@ -20,5 +20,6 @@ namespace SinavOtomasyonuProjesi.Models
         public string Ünvanı { get; set; }
         public string Email { get; set; }
         public string Şifresi { get; set; }
+        public String ŞifreTekrar { get; set; }
     }
 }
