@@ -34,11 +34,12 @@
   </EntityType>
   <EntityType Name="SinavKagıdı">
     <Key>
-      <PropertyRef Name="SınavId" />
+      <PropertyRef Name="SinavKagidiId" />
     </Key>
-    <Property Name="SınavId" Type="int" Nullable="false" />
+    <Property Name="SinavKagidiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SoruId" Type="int" Nullable="false" />
     <Property Name="CevapId" Type="int" />
+    <Property Name="SınavId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Sinavlar">
     <Key>
@@ -83,27 +84,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SinavKagıdı_Sinavlar">
+    <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="1" />
+    <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sinavlar">
+        <PropertyRef Name="Sınav_id" />
+      </Principal>
+      <Dependent Role="SinavKagıdı">
+        <PropertyRef Name="SınavId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SinavKagıdı_Sorular">
-    <End Role="Sorular" Type="Self.Sorular" Multiplicity="0..1" />
+    <End Role="Sorular" Type="Self.Sorular" Multiplicity="1" />
     <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Sorular">
         <PropertyRef Name="Sid" />
       </Principal>
       <Dependent Role="SinavKagıdı">
-        <PropertyRef Name="CevapId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Sinavlar_SinavKagıdı">
-    <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="1" />
-    <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="SinavKagıdı">
-        <PropertyRef Name="SınavId" />
-      </Principal>
-      <Dependent Role="Sinavlar">
-        <PropertyRef Name="Sınav_id" />
+        <PropertyRef Name="SoruId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -119,13 +120,13 @@
       <End Role="Cevaplar" EntitySet="Cevaplar" />
       <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
     </AssociationSet>
+    <AssociationSet Name="FK_SinavKagıdı_Sinavlar" Association="Self.FK_SinavKagıdı_Sinavlar">
+      <End Role="Sinavlar" EntitySet="Sinavlar" />
+      <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
+    </AssociationSet>
     <AssociationSet Name="FK_SinavKagıdı_Sorular" Association="Self.FK_SinavKagıdı_Sorular">
       <End Role="Sorular" EntitySet="Sorular" />
       <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Sinavlar_SinavKagıdı" Association="Self.FK_Sinavlar_SinavKagıdı">
-      <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
-      <End Role="Sinavlar" EntitySet="Sinavlar" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -39,9 +39,10 @@
     <EntitySetMapping Name="SinavKagıdı">
       <EntityTypeMapping TypeName="SınavProjesiModel.SinavKagıdı">
         <MappingFragment StoreEntitySet="SinavKagıdı">
-          <ScalarProperty Name="SınavId" ColumnName="SınavId" />
+          <ScalarProperty Name="SinavKagidiId" ColumnName="SinavKagidiId" />
           <ScalarProperty Name="SoruId" ColumnName="SoruId" />
           <ScalarProperty Name="CevapId" ColumnName="CevapId" />
+          <ScalarProperty Name="SınavId" ColumnName="SınavId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
