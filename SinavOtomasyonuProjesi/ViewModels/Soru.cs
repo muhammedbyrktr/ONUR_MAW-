@@ -46,5 +46,6 @@ namespace SinavOtomasyonuProjesi.ViewModels
         public bool test { get; set; }
         public bool klasik { get; set; }
         public bool dogru { get; set; }
+        public bool Durum { get; set; }
     }
 }

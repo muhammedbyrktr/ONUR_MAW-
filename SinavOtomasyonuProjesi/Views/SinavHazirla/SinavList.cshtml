@@ -16,30 +16,41 @@
         });
     });
 </script>
+<strong>
+    Klasik Soru : @ViewBag.klasikSayi<br />
+    Test Soru : @ViewBag.testSayi<br />
+    Dogru Yanlış Soru : @ViewBag.dogruyanlisSayi<br />
+    Toplam Soru Sayısı : @ViewBag.toplamsoru<br />
+</strong>
 
-<h6>Klasik Soru : @ViewBag.klasikssayi</h6>
-<h6>Test Soru : @ViewBag.testsayi</h6>
-<h6>Dogru yanlış Soru : @ViewBag.testsayi</h6>
-<h6>Toplama soru Sayısı : @ViewBag.toplamsoru</h6>
-<h6>Toplam puan : </h6>
 
+@using (Html.BeginForm())
+{
 
-
- @using (Html.BeginForm())
- {
-        <label class="btn btn-primary ">
-           @Html.CheckBoxFor(m => m.test)
+        <label class="btn btn-primary btn-xs ">
+          
+           @Html.CheckBoxFor(m => m.test,new { id = "t" })
+            @Html.LabelFor(m => m.test)
         </label>
-        <label class="btn btn-primary">
-            @Html.CheckBoxFor(m=>m.klasik)
+        <label class="btn btn-primary btn-xs">
+           
+            @Html.CheckBoxFor(m => m.klasik,new { id = "k" })
+            @Html.LabelFor(m => m.klasik)
         </label>
-        <label class="btn btn-primary">
-            @Html.CheckBoxFor(m=>m.dogru)
+      
+        <label class="btn btn-primary btn-xs">
+           
+            @Html.CheckBoxFor(m => m.dogru, new { id = "d" })
+            @Html.LabelFor(m => m.dogru)
         </label>
-        <button type="submit" class="btn btn-primary" >Listele</button>
-  
-    <h2>Soru Listesi</h2>
+      
    
+        <button type="submit" id="durum"name="Durum" class="btn btn-primary"> Listele</button>
+}
+
+    <h2>Soru Listesi</h2>
+   @using (Html.BeginForm())
+   {
         @Html.AntiForgeryToken()
         @*@Html.EditorForModel()*@
         <div class="col-md-offset-2 col-md-10">
@@ -109,7 +120,7 @@
         {
             <a href="#" class="btn btn-sm disabled btn-primary"> Previous Page</a>
         }
-
+        
         @if (Model.Sorularımdr.HasNextPage)
         {
             <a href="@Url.Action("Sinavlist", new { page = @Model.Sorularımdr.NextPage , d=@Model.dogru,t=Model.test,k=@Model.klasik})" class="btn btn-sm btn-primary"> Next Page<i class="glyphicon glyphicon-chevron-right"></i></a>

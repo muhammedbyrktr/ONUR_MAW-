@@ -61,18 +61,26 @@ namespace SinavOtomasyonuProjesi.Controllers
         private SınavProjesiEntities1 db = new SınavProjesiEntities1();
         private static int postsPerPage = 5;
 
-        public ActionResult SinavList(Sinavlar sinav, PageListV form, bool k=false, bool d = false, bool t = false, int page = 1)
+        public ActionResult SinavList(Sinavlar sinav, PageListV form, FormCollection button , bool k=false, bool d = false, bool t = false, int page = 1)
         {
-            if (k == false)
-                k = form.klasik;
-            if (d == false)
-                d = form.dogru;
-            if (t == false)
-                t = form.test;
             sinav = _sinav;
             var soru = db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
             int totalPostCount = 0;
             totalPostCount = db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
+            ViewBag.klasikSayi = db.Sorular.Where(x => x.Sturu == "Klasik" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
+            ViewBag.testSayi = db.Sorular.Where(x => x.Sturu == "Test" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
+            ViewBag.dogruyanlisSayi = db.Sorular.Where(x => x.Sturu == "Doğru_Yanlış" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
+            ViewBag.ToplamSoru = totalPostCount;
+            String a = button["durum"];
+            if (a!=null)
+            {
+                page = 1;
+                k = form.klasik;
+                t = form.test;
+                d = form.dogru;
+            }
+          
+            
             List<Soru> listSoru = new List<Soru>();
             //if (sorular[0] == "hepsi" || sorular == null)
             //{
@@ -81,17 +89,17 @@ namespace SinavOtomasyonuProjesi.Controllers
             //}
             if (k == false && d == false && t == true)
             {
-                totalPostCount = db.Sorular.Where(x => x.Sturu == "Test" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
+                totalPostCount = ViewBag.testSayi;
                 soru = db.Sorular.Where(x => x.Sturu == "Test" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
             }
             else if (k == true&&d==false&&t==false)
             {
-                totalPostCount = db.Sorular.Where(x => x.Sturu == "Klasik" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
+                totalPostCount = ViewBag.klasikSayi;
                 soru = db.Sorular.Where(x => x.Sturu == "Klasik" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
             }
             else if (k == false && d == true && t == false)
             {
-                totalPostCount = db.Sorular.Where(x => x.Sturu == "Doğru_Yanlış" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
+                totalPostCount = ViewBag.dogruyanlisSayi;
                 soru = db.Sorular.Where(x => x.Sturu == "Doğru_Yanlış" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
             }
             if (t == true && k == true&&d== false)
