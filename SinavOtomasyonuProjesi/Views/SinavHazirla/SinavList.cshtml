@@ -16,60 +16,36 @@
         });
     });
 </script>
+
 <h6>Klasik Soru : @ViewBag.klasikssayi</h6>
 <h6>Test Soru : @ViewBag.testsayi</h6>
 <h6>Dogru yanlış Soru : @ViewBag.testsayi</h6>
 <h6>Toplama soru Sayısı : @ViewBag.toplamsoru</h6>
 <h6>Toplam puan : </h6>
 
-<script type="text/javascript">
-    function StürüKontrol() {
-        var sorular = document.getElementsByName("sorular");
-        if (sorular[1].checked && sorular[2].checked && sorular[3].checked)
-          @Url.Action("SinavList", "SinavHazirla","hepsi");
 
-        else if (sorular[1].checked && sorular[2].checked)
-            @Url.Action("SinavList", "SinavHazirla","hepsiTK");
 
-        else if (sorular[1].checked && sorular[3].checked)
-            @Url.Action("SinavList", "SinavHazirla","hepsiTD");
-
-        else if (sorular[2].checked && sorular[3].checked)
-            @Url.Action("SinavList", "SinavHazirla","hepsiKD");
-
-        else if (sorular[1].checked)
-            @Url.Action("SinavList", "SinavHazirla","Test");
-
-        else if (sorular[2].checked)
-            @Url.Action("SinavList", "SinavHazirla","Klasik");
-
-        else if (sorular[3].checked)
-        @Url.Action("SinavList", "SinavHazirla","Dogru_Yanlis");
-
-    }
-    </script>
-
+ @using (Html.BeginForm())
+ {
+        <label class="btn btn-primary ">
+           @Html.CheckBoxFor(m => m.test)
+        </label>
+        <label class="btn btn-primary">
+            @Html.CheckBoxFor(m=>m.klasik)
+        </label>
+        <label class="btn btn-primary">
+            @Html.CheckBoxFor(m=>m.dogru)
+        </label>
+        <button type="submit" class="btn btn-primary" >Listele</button>
   
-        <label class="btn btn-primary active">
-            <input type="checkbox" autocomplete="off" id="stürü1" name="sorular" value="1"> Test
-        </label>
-        <label class="btn btn-primary">
-            <input type="checkbox" autocomplete="off" id="stürü2" name="sorular" value="2"> Klasik
-        </label>
-        <label class="btn btn-primary">
-            <input type="checkbox" autocomplete="off" id="stürü3" name="sorular" value="3"> Doğru-Yanlış
-        </label>
-        <button type="submit" class="btn btn-primary" onclick=" stürükontrol()">Listele</button>
-    
     <h2>Soru Listesi</h2>
-    @using (Html.BeginForm(FormMethod.Post))
-    {
+   
         @Html.AntiForgeryToken()
-        @Html.EditorForModel()
+        @*@Html.EditorForModel()*@
         <div class="col-md-offset-2 col-md-10">
             <button type="submit" class="btn btn-sm  btn-primary">Secimi kaydet</button>
         </div>
-
+        
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -127,7 +103,7 @@
 
         @if (Model.Sorularımdr.HasPreviousPage)
         {
-            <a href="@Url.Action("Sinavlist", new { page = @Model.Sorularımdr.PreviousPage })" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Previous Page</a>
+            <a href="@Url.Action("Sinavlist", new { page = @Model.Sorularımdr.PreviousPage , d=@Model.dogru,t=Model.test,k=@Model.klasik})" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Previous Page</a>
         }
         else
         {
@@ -136,7 +112,7 @@
 
         @if (Model.Sorularımdr.HasNextPage)
         {
-            <a href="@Url.Action("Sinavlist", new { page = @Model.Sorularımdr.NextPage })" class="btn btn-sm btn-primary"> Next Page<i class="glyphicon glyphicon-chevron-right"></i></a>
+            <a href="@Url.Action("Sinavlist", new { page = @Model.Sorularımdr.NextPage , d=@Model.dogru,t=Model.test,k=@Model.klasik})" class="btn btn-sm btn-primary"> Next Page<i class="glyphicon glyphicon-chevron-right"></i></a>
         }
         else
         {

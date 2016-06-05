@@ -17,7 +17,7 @@ namespace SinavOtomasyonuProjesi.ViewModels
         public string Ders { get; set; }
         public int H_id { get; set; }
         public Nullable<int> Spuan { get; set; }
-      
+
 
 
         public int Cid { get; set; }
@@ -32,16 +32,19 @@ namespace SinavOtomasyonuProjesi.ViewModels
         public IEnumerable<SelectListItem> Siklar { get; set; }
         public IEnumerable<SelectListItem> Doğru_Yanlış { get; set; }
         public string message { get; set; }
-       
+
     }
 
-  public class PageList
-  {
-      public PageData<Sorular> Sorularımm { get; set; }
-  }
+    public class PageList
+    {
+        public PageData<Sorular> Sorularımm { get; set; }
+    }
 
-  public class PageListV
-  {
-      public PageData<Soru> Sorularımdr { get; set; }
-  }
+    public class PageListV
+    {
+        public PageData<Soru> Sorularımdr { get; set; }
+        public bool test { get; set; }
+        public bool klasik { get; set; }
+        public bool dogru { get; set; }
+    }
 }

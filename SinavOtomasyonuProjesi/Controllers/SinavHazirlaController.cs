@@ -61,48 +61,55 @@ namespace SinavOtomasyonuProjesi.Controllers
         private SınavProjesiEntities1 db = new SınavProjesiEntities1();
         private static int postsPerPage = 5;
 
-        public ActionResult SinavList(Sinavlar sinav, string tur, int page = 1)
+        public ActionResult SinavList(Sinavlar sinav, PageListV form, bool k=false, bool d = false, bool t = false, int page = 1)
         {
+            if (k == false)
+                k = form.klasik;
+            if (d == false)
+                d = form.dogru;
+            if (t == false)
+                t = form.test;
             sinav = _sinav;
             var soru = db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
             int totalPostCount = 0;
-            
+            totalPostCount = db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
             List<Soru> listSoru = new List<Soru>();
-            if (tur == "hepsi" || tur == null)
-            {
-                totalPostCount = db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
+            //if (sorular[0] == "hepsi" || sorular == null)
+            //{
+            //    totalPostCount = db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
 
-            }
-            else if (tur == "hepsiTK")
-            {
-                totalPostCount = db.Sorular.Where(x => x.Sturu == "Klasik" && x.Sturu == "Test" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
-                soru = db.Sorular.Where(x => x.Sturu == "Klasik" && x.Sturu == "Test" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
-            }
-            else if (tur == "hepsiTD")
-            {
-                totalPostCount = db.Sorular.Where(x => x.Sturu == "Doğru_Yanlış" && x.Sturu == "Test" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
-                soru = db.Sorular.Where(x => x.Sturu == "Doğru_Yanlış" && x.Sturu == "Test" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
-            }
-            else if (tur == "KD")
-            {
-                totalPostCount = db.Sorular.Where(x => x.Sturu == "Doğru_Yanlış" && x.Sturu == "Klasik" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
-                soru = db.Sorular.Where(x => x.Sturu == "Doğru_Yanlış" && x.Sturu == "Klasik" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
-            }
-            else if (tur == "Test")
+            //}
+            if (k == false && d == false && t == true)
             {
                 totalPostCount = db.Sorular.Where(x => x.Sturu == "Test" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
                 soru = db.Sorular.Where(x => x.Sturu == "Test" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
             }
-            else if (tur == "Klasik")
+            else if (k == true&&d==false&&t==false)
             {
                 totalPostCount = db.Sorular.Where(x => x.Sturu == "Klasik" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
                 soru = db.Sorular.Where(x => x.Sturu == "Klasik" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
             }
-            else if (tur == "Dogru_Yanlis")
+            else if (k == false && d == true && t == false)
             {
                 totalPostCount = db.Sorular.Where(x => x.Sturu == "Doğru_Yanlış" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
                 soru = db.Sorular.Where(x => x.Sturu == "Doğru_Yanlış" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
             }
+            if (t == true && k == true&&d== false)
+            {
+                totalPostCount = db.Sorular.Where(x => (x.Sturu == "Klasik" || x.Sturu == "Test") && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
+                soru = db.Sorular.Where(x => (x.Sturu == "Klasik" || x.Sturu == "Test") && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
+            }
+            else if (t == true && d == true&&k== false)
+            {
+                totalPostCount = db.Sorular.Where(x => (x.Sturu == "Doğru_Yanlış" || x.Sturu == "Test") && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
+                soru = db.Sorular.Where(x => (x.Sturu == "Doğru_Yanlış" || x.Sturu == "Test") && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
+            }
+            else if (k == true && d == true&&t== false)
+            {
+                totalPostCount = db.Sorular.Where(x => (x.Sturu == "Doğru_Yanlış" || x.Sturu == "Klasik") && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
+                soru = db.Sorular.Where(x => (x.Sturu == "Doğru_Yanlış" || x.Sturu == "Klasik") && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
+            }
+            
 
             //var soru = db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
             foreach (var i in soru)
@@ -128,8 +135,12 @@ namespace SinavOtomasyonuProjesi.Controllers
 
             return View(new PageListV()
             {
-                Sorularımdr = new PageData<Soru>(listSoru, totalPostCount, page, postsPerPage)
+                Sorularımdr = new PageData<Soru>(listSoru, totalPostCount, page, postsPerPage),
+                test = t,
+                klasik = k,
+                dogru = d
             });
+
         }
     }
 }
