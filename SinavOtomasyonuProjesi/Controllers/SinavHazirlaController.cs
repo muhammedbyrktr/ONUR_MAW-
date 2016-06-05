@@ -92,6 +92,7 @@ namespace SinavOtomasyonuProjesi.Controllers
                     //sinavkagıdım.Sinavkagıdım.Add(Sınav);
                    
                 }
+          Sinavlar si=db.Sinavlar.OrderBy(x => x.SınavTarihi).FirstOrDefault();
                 return null;
             }
             else { 
