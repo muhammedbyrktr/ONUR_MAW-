@@ -33,11 +33,11 @@
                     <a href="@Url.Action("DersDüzenle", "Dersler", new { id = item.D_id })" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i>Düzenle</a>
                     <a href="@Url.Action("DersSil", "Dersler", new { id = item.D_id }) " class=" btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i>Sil</a>
                 </div>
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
     }
 
 </table>
+<div class="pull-left">
+    <a href="@Url.Action("DersEkle", "Dersler")" class="btn btn-primary glyphicon glyphicon-chevron-left"> Geri Dön</a>
+</div>

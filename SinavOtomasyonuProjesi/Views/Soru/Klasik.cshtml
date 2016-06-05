@@ -23,13 +23,13 @@
               @Html.ValidationSummary()
             <div class="contact-line message" style=" position: relative; margin-top: 8px;">
                 <div class="contact-col2"> 
-                    @Html.TextAreaFor(m => m.Smetni, new { @class = "form-control", required = "required", @placeholder = "Soru girin.." })
+                    @Html.TextAreaFor(m => m.Smetni, new { @class = "form-control", required = "required", @placeholder = "Metni Buraya girin.." })
                 </div>
             </div>
 
             <div class="contact-col1" style="margin-top: 4px;">
                 <span>
-                    Ders &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Ders &nbsp;&nbsp;
                 </span>      
                  @Html.DropDownList("Dersler", "--Ders Girin--")
                 @*@Html.TextBoxFor(m => m.Ders, new { @class = "form-control", required = "required", @placeholder = "Ders girin.." })*@

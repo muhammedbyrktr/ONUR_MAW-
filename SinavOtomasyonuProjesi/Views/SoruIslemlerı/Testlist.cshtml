@@ -4,76 +4,80 @@
     ViewBag.Title = "Test Soru Listesi";
 }
 
-<h2>Test Soru Listesi</h2>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th> Sid </th>
-            <th>  Sturu </th>
-            <th> Smetni</th>
-            <th> Ders</th>
-            <th> H_id</th>
-            <th> Spuan </th>
-            <th> A </th>
-            <th> B </th>
-            <th> C</th>
-            <th> D</th>
-            <th> E</th>
-            <th> DogruCevap </th>
-            <th></th>
-        </tr>
-    </thead>
-    
-    @foreach (var item in Model.Sorularımdr._currentItems)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sturu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Smetni)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ders)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.H_id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Spuan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.A)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.B)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.C)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.D)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.E)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DogruCevap)
-            </td>
-            <td>
-                <div class="btn-group">
-                    <a href="@Url.Action("Testedit", "SoruIslemlerı", new { id = item.Sid })" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i>Düzenle</a>
+        <h2>Test Soru Listesi</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Sid </th>
+                            <th>  Sturu </th>
+                            <th> Smetni</th>
+                            <th> Ders</th>
+                            <th> H_id</th>
+                            <th> Spuan </th>
+                            <th> A </th>
+                            <th> B </th>
+                            <th> C</th>
+                            <th> D</th>
+                            <th> E</th>
+                            <th> DogruCevap </th>
+                            <th></th>
+                        </tr>
+                    </thead>
 
-                    <a href="@Url.Action("Testdelete", "SoruIslemlerı", new { id = item.Sid }) " class=" btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i>Sil</a>
-                </div>      
-            </td>
-        </tr>
-    }
+                    @foreach (var item in Model.Sorularımdr._currentItems)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sid)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sturu)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Smetni)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Ders)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.H_id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Spuan)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.A)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.B)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.C)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.D)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.E)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DogruCevap)
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="@Url.Action("Testedit", "SoruIslemlerı", new { id = item.Sid })" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i>Düzenle</a>
 
-</table>
+                                    <a href="@Url.Action("Testdelete", "SoruIslemlerı", new { id = item.Sid }) " class=" btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i>Sil</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+<div class="pull-left">
+    <a href="@Url.Action("Profilim", "Soru")" class="btn btn-primary glyphicon glyphicon-chevron-left"> Profile Dön</a>
+ </div>
 
 <div class="btn-group pull-right">
 
@@ -95,3 +99,5 @@
         <a href="#" class="btn btn-sm disabled btn-primary"> Next Page</a>
     }
 </div>
+
+
