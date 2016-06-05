@@ -150,6 +150,12 @@ namespace SinavOtomasyonuProjesi.Controllers
             });
 
         }
+
+    
+        public ActionResult SinavKagıdı()
+        {
+            return View();
+        }
     }
 }
 

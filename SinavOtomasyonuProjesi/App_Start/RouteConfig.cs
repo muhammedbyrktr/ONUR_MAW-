@@ -54,6 +54,7 @@ namespace SinavOtomasyonuProjesi
 
             routes.MapRoute("SoruEkle", "SoruEkle", new { controller = "SinavHazirla", action = "SoruEkle" }, namespaces);
             routes.MapRoute("SinavList", "SinavList", new { controller = "SinavHazirla", action = "SinavList" }, namespaces);
+            routes.MapRoute("SinavKagıdı", "SinavKagıdı", new { controller = "SinavHazirla", action = "SinavKagıdı" }, namespaces);
         }
     }
 }
