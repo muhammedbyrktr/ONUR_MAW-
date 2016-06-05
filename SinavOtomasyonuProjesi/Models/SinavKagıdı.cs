@@ -14,12 +14,13 @@ namespace SinavOtomasyonuProjesi.Models
     
     public partial class SinavKagıdı
     {
-        public int SınavId { get; set; }
+        public int SinavKagidiId { get; set; }
         public int SoruId { get; set; }
         public Nullable<int> CevapId { get; set; }
+        public int SınavId { get; set; }
     
         public virtual Cevaplar Cevaplar { get; set; }
-        public virtual Sorular Sorular { get; set; }
         public virtual Sinavlar Sinavlar { get; set; }
+        public virtual Sorular Sorular { get; set; }
     }
 }

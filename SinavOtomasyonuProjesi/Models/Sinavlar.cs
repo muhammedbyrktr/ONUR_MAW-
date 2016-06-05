@@ -14,12 +14,19 @@ namespace SinavOtomasyonuProjesi.Models
     
     public partial class Sinavlar
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Sinavlar()
+        {
+            this.SinavKagıdı = new HashSet<SinavKagıdı>();
+        }
+    
         public int Sınav_id { get; set; }
         public string SınavTipi { get; set; }
         public System.DateTime SınavTarihi { get; set; }
         public string DersAdi { get; set; }
         public int S_Hoca_id { get; set; }
     
-        public virtual SinavKagıdı SinavKagıdı { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SinavKagıdı> SinavKagıdı { get; set; }
     }
 }

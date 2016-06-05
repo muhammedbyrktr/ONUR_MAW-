@@ -10,7 +10,7 @@ using System.Web.WebPages.Html;
 namespace SinavOtomasyonuProjesi.ViewModels
 {
     public class sinavkagıdı { 
-    public IEnumerable<SinavKagıdı> Sinavkagıdım { get; set; }
+    public List<SinavKagıdı> Sinavkagıdım { get; set; }
     }
     public class Soru
     {

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SınavProjesiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SınavProjesiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cevaplar">
           <Key>
             <PropertyRef Name="Cid" />
@@ -39,11 +39,12 @@
         </EntityType>
         <EntityType Name="SinavKagıdı">
           <Key>
-            <PropertyRef Name="SınavId" />
+            <PropertyRef Name="SinavKagidiId" />
           </Key>
-          <Property Name="SınavId" Type="int" Nullable="false" />
+          <Property Name="SinavKagidiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SoruId" Type="int" Nullable="false" />
           <Property Name="CevapId" Type="int" />
+          <Property Name="SınavId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Sinavlar">
           <Key>
@@ -88,27 +89,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SinavKagıdı_Sinavlar">
+          <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="1" />
+          <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sinavlar">
+              <PropertyRef Name="Sınav_id" />
+            </Principal>
+            <Dependent Role="SinavKagıdı">
+              <PropertyRef Name="SınavId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SinavKagıdı_Sorular">
-          <End Role="Sorular" Type="Self.Sorular" Multiplicity="0..1" />
+          <End Role="Sorular" Type="Self.Sorular" Multiplicity="1" />
           <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sorular">
               <PropertyRef Name="Sid" />
             </Principal>
             <Dependent Role="SinavKagıdı">
-              <PropertyRef Name="CevapId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sinavlar_SinavKagıdı">
-          <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="1" />
-          <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="SinavKagıdı">
-              <PropertyRef Name="SınavId" />
-            </Principal>
-            <Dependent Role="Sinavlar">
-              <PropertyRef Name="Sınav_id" />
+              <PropertyRef Name="SoruId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -124,17 +125,16 @@
             <End Role="Cevaplar" EntitySet="Cevaplar" />
             <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
           </AssociationSet>
+          <AssociationSet Name="FK_SinavKagıdı_Sinavlar" Association="Self.FK_SinavKagıdı_Sinavlar">
+            <End Role="Sinavlar" EntitySet="Sinavlar" />
+            <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
+          </AssociationSet>
           <AssociationSet Name="FK_SinavKagıdı_Sorular" Association="Self.FK_SinavKagıdı_Sorular">
             <End Role="Sorular" EntitySet="Sorular" />
             <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
           </AssociationSet>
-          <AssociationSet Name="FK_Sinavlar_SinavKagıdı" Association="Self.FK_Sinavlar_SinavKagıdı">
-            <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
-            <End Role="Sinavlar" EntitySet="Sinavlar" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SınavProjesiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -173,14 +173,15 @@
         </EntityType>
         <EntityType Name="SinavKagıdı">
           <Key>
-            <PropertyRef Name="SınavId" />
+            <PropertyRef Name="SinavKagidiId" />
           </Key>
-          <Property Name="SınavId" Type="Int32" Nullable="false" />
+          <Property Name="SinavKagidiId" Type="Int32" Nullable="false" />
           <Property Name="SoruId" Type="Int32" Nullable="false" />
           <Property Name="CevapId" Type="Int32" />
+          <Property Name="SınavId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cevaplar" Relationship="Self.FK_SinavKagıdı_Cevaplar" FromRole="SinavKagıdı" ToRole="Cevaplar" />
+          <NavigationProperty Name="Sinavlar" Relationship="Self.FK_SinavKagıdı_Sinavlar" FromRole="SinavKagıdı" ToRole="Sinavlar" />
           <NavigationProperty Name="Sorular" Relationship="Self.FK_SinavKagıdı_Sorular" FromRole="SinavKagıdı" ToRole="Sorular" />
-          <NavigationProperty Name="Sinavlar" Relationship="Self.FK_Sinavlar_SinavKagıdı" FromRole="SinavKagıdı" ToRole="Sinavlar" />
         </EntityType>
         <EntityType Name="Sinavlar">
           <Key>
@@ -191,7 +192,7 @@
           <Property Name="SınavTarihi" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DersAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="S_Hoca_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SinavKagıdı" Relationship="Self.FK_Sinavlar_SinavKagıdı" FromRole="Sinavlar" ToRole="SinavKagıdı" />
+          <NavigationProperty Name="SinavKagıdı" Relationship="Self.FK_SinavKagıdı_Sinavlar" FromRole="Sinavlar" ToRole="SinavKagıdı" />
         </EntityType>
         <EntityType Name="Sorular">
           <Key>
@@ -227,27 +228,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SinavKagıdı_Sinavlar">
+          <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="1" />
+          <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sinavlar">
+              <PropertyRef Name="Sınav_id" />
+            </Principal>
+            <Dependent Role="SinavKagıdı">
+              <PropertyRef Name="SınavId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SinavKagıdı_Sorular">
-          <End Role="Sorular" Type="Self.Sorular" Multiplicity="0..1" />
+          <End Role="Sorular" Type="Self.Sorular" Multiplicity="1" />
           <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sorular">
               <PropertyRef Name="Sid" />
             </Principal>
             <Dependent Role="SinavKagıdı">
-              <PropertyRef Name="CevapId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sinavlar_SinavKagıdı">
-          <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="1" />
-          <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="SinavKagıdı">
-              <PropertyRef Name="SınavId" />
-            </Principal>
-            <Dependent Role="Sinavlar">
-              <PropertyRef Name="Sınav_id" />
+              <PropertyRef Name="SoruId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -263,13 +264,13 @@
             <End Role="Cevaplar" EntitySet="Cevaplar" />
             <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
           </AssociationSet>
+          <AssociationSet Name="FK_SinavKagıdı_Sinavlar" Association="Self.FK_SinavKagıdı_Sinavlar">
+            <End Role="Sinavlar" EntitySet="Sinavlar" />
+            <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
+          </AssociationSet>
           <AssociationSet Name="FK_SinavKagıdı_Sorular" Association="Self.FK_SinavKagıdı_Sorular">
             <End Role="Sorular" EntitySet="Sorular" />
             <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sinavlar_SinavKagıdı" Association="Self.FK_Sinavlar_SinavKagıdı">
-            <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
-            <End Role="Sinavlar" EntitySet="Sinavlar" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -316,9 +317,10 @@
           <EntitySetMapping Name="SinavKagıdı">
             <EntityTypeMapping TypeName="SınavProjesiModel.SinavKagıdı">
               <MappingFragment StoreEntitySet="SinavKagıdı">
-                <ScalarProperty Name="SınavId" ColumnName="SınavId" />
+                <ScalarProperty Name="SinavKagidiId" ColumnName="SinavKagidiId" />
                 <ScalarProperty Name="SoruId" ColumnName="SoruId" />
                 <ScalarProperty Name="CevapId" ColumnName="CevapId" />
+                <ScalarProperty Name="SınavId" ColumnName="SınavId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

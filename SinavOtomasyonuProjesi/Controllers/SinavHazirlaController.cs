@@ -60,10 +60,42 @@ namespace SinavOtomasyonuProjesi.Controllers
 
         private SınavProjesiEntities1 db = new SınavProjesiEntities1();
         private static int postsPerPage = 5;
-
+     public static   sinavkagıdı sinavkagıdım = new sinavkagıdı();
         public ActionResult SinavList(Sinavlar sinav, PageListV form, FormCollection button , bool k=false, bool d = false, bool t = false, int page = 1)
         {
             sinav = _sinav;
+            String sec = button["sec"];
+            if (sec != null)
+            {
+                string[] ids = button["sid"].Split(new char[] { ',' });
+                db.Sinavlar.Add(_sinav);
+                foreach (var id in ids)
+                {
+                    int a = Convert.ToInt32( id);
+                    var soru= db.Sorular.Find(a);
+                    var cevap = db.Cevaplar.Where(x => x.Sid ==a).SingleOrDefault();
+                    Models.SinavKagıdı Sınav = new Models.SinavKagıdı();
+                    if (cevap != null)
+                    {
+                        Sınav.CevapId = cevap.Cid;
+                        Sınav.Cevaplar = cevap;
+                    }
+                    
+                    Sınav.SoruId = soru.Sid;
+                    Sınav.Sorular = soru;
+                    Sınav.Sinavlar = sinav;
+                    Sınav.SınavId= sinav.Sınav_id;
+
+                  
+                    db.SinavKagıdı.Add(Sınav);
+                    db.SaveChanges();
+                    //sinavkagıdım.Sinavkagıdım.Add(Sınav);
+                   
+                }
+                return null;
+            }
+            else { 
+            
             var soru = db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).OrderBy(x => x.Sid).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
             int totalPostCount = 0;
             totalPostCount = db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
@@ -148,7 +180,7 @@ namespace SinavOtomasyonuProjesi.Controllers
                 klasik = k,
                 dogru = d
             });
-
+            }
         }
 
     

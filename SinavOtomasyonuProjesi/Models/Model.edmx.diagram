@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d2b3d6b2de134e0ca107869ba28bab82" Name="Diagram1">
+      <Diagram DiagramId="226f9d42cf08406f98154db7700f731a" Name="Diagram1">
         <EntityTypeShape EntityType="SınavProjesiModel.Cevaplar" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="SınavProjesiModel.Dersler" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SınavProjesiModel.Hocalar" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SınavProjesiModel.SinavKagıdı" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SınavProjesiModel.Sinavlar" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SınavProjesiModel.Sorular" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SınavProjesiModel.sysdiagrams" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SınavProjesiModel.SinavKagıdı" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SınavProjesiModel.Sinavlar" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SınavProjesiModel.Sorular" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SınavProjesiModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="SınavProjesiModel.FK_SinavKagıdı_Cevaplar" ManuallyRouted="false" />
+        <AssociationConnector Association="SınavProjesiModel.FK_SinavKagıdı_Sinavlar" ManuallyRouted="false" />
         <AssociationConnector Association="SınavProjesiModel.FK_SinavKagıdı_Sorular" ManuallyRouted="false" />
-        <AssociationConnector Association="SınavProjesiModel.FK_Sinavlar_SinavKagıdı" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
