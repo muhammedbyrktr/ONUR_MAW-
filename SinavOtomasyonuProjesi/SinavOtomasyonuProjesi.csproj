@@ -336,6 +336,7 @@
     <Content Include="Views\Yardımcı\İletişim.cshtml" />
     <Content Include="Views\SinavHazirla\SoruEkle.cshtml" />
     <Content Include="Views\SinavHazirla\SinavList.cshtml" />
+    <Content Include="Views\SinavHazirla\Sinavpdf.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
