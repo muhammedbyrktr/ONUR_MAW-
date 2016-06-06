@@ -16,120 +16,157 @@
         });
     });
 </script>
-<strong>
-    Klasik Soru : @ViewBag.klasikSayi<br />
-    Test Soru : @ViewBag.testSayi<br />
-    Dogru Yanlış Soru : @ViewBag.dogruyanlisSayi<br />
-    Toplam Soru Sayısı : @ViewBag.toplamsoru<br />
-</strong>
+
+
+<p>
+    <strong>
+    Klasik Soru        : @ViewBag.klasikSayi
+    </strong>
+</p>
+<p>
+    <strong>
+        Test Soru          : @ViewBag.testSayi
+    </strong>
+</p>
+<p>
+    <strong>
+        Dogru Yanlış Soru  : @ViewBag.dogruyanlisSayi
+    </strong>
+</p>
+<p>
+    <strong>
+        Toplam Soru Sayısı : @ViewBag.toplamsoru
+    </strong>
+</p>
+<p>
+    <strong>
+        Ders        : @ViewBag.HangiDers
+    </strong>
+</p>
+<p>
+    <strong>
+        Sınav Tipi        : @ViewBag.Sınavtipi
+    </strong>
+</p>
+<p>
+    <strong>
+        Oluşturulma Tarihi        : @ViewBag.Sınavtarihi
+    </strong>
+</p><br />
+
 
 
 @using (Html.BeginForm())
 {
 
-        <label class="btn btn-primary btn-xs ">
-          
-           @Html.CheckBoxFor(m => m.test,new { id = "t" })
-            @Html.LabelFor(m => m.test)
-        </label>
-        <label class="btn btn-primary btn-xs">
-           
-            @Html.CheckBoxFor(m => m.klasik,new { id = "k" })
-            @Html.LabelFor(m => m.klasik)
-        </label>
-      
-        <label class="btn btn-primary btn-xs">
-           
-            @Html.CheckBoxFor(m => m.dogru, new { id = "d" })
-            @Html.LabelFor(m => m.dogru)
-        </label>
-      
-   
-        <button type="submit" id="durum"name="Durum" class="btn btn-primary"> Listele</button>
+    <label class="btn btn-primary btn-xs ">
+
+        @Html.CheckBoxFor(m => m.test, new { id = "t" })
+        @Html.LabelFor(m => m.test)
+    </label>
+    <label class="btn btn-primary btn-xs">
+
+        @Html.CheckBoxFor(m => m.klasik, new { id = "k" })
+        @Html.LabelFor(m => m.klasik)
+    </label>
+
+    <label class="btn btn-primary btn-xs">
+
+        @Html.CheckBoxFor(m => m.dogru, new { id = "d" })
+        @Html.LabelFor(m => m.dogru)
+    </label>
+
+
+    <button type="submit" id="durum" name="Durum" class="btn btn-primary"> Listele</button>
 }
 
-    <h2>Soru Listesi</h2>
-   @using (Html.BeginForm())
-   {
-        @Html.AntiForgeryToken()
-        @*@Html.EditorForModel()*@
-        <div class="col-md-offset-2 col-md-10">
-            <button type="submit" id="sec"name="Sec"class="btn btn-sm  btn-primary">Secimi kaydet</button>
-        </div>
-        
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th> </th>
-                    <th>Sturu</th>
-                    <th>Smetni</th>
-                    <th> Spuan </th>
-                    <th> A </th>
-                    <th> B </th>
-                    <th> C</th>
-                    <th> D</th>
-                    <th> E</th>
-                    <th> DogruCevap </th>
-                </tr>
-            </thead>
-
-            @foreach (var item in Model.Sorularımdr._currentItems)
-            {
-                <tr>
-                    <td>
-                        <input type="checkbox" id="chkCheckBoxid" name="sid" value="@item.Sid" />
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sturu)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Smetni)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Spuan)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.A)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.B)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.C)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.D)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.E)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DogruCevap)
-                    </td>
-                </tr>
-            }
-
-        </table>
-    }
-    <div class="btn-group pull-right">
-
-        @if (Model.Sorularımdr.HasPreviousPage)
-        {
-            <a href="@Url.Action("Sinavlist", new { page = @Model.Sorularımdr.PreviousPage , d=@Model.dogru,t=Model.test,k=@Model.klasik})" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Previous Page</a>
-        }
-        else
-        {
-            <a href="#" class="btn btn-sm disabled btn-primary"> Previous Page</a>
-        }
-        
-        @if (Model.Sorularımdr.HasNextPage)
-        {
-            <a href="@Url.Action("Sinavlist", new { page = @Model.Sorularımdr.NextPage , d=@Model.dogru,t=Model.test,k=@Model.klasik})" class="btn btn-sm btn-primary"> Next Page<i class="glyphicon glyphicon-chevron-right"></i></a>
-        }
-        else
-        {
-            <a href="#" class="btn btn-sm disabled btn-primary"> Next Page</a>
-        }
+<h2>Soru Listesi</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @*@Html.EditorForModel()*@
+    <div class="col-md-offset-2 col-md-10">
+        <button type="submit" id="sec" name="Sec" class="btn btn-sm  btn-primary">Secimi kaydet</button>
     </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th> </th>
+                <th>Sturu</th>
+                <th>Smetni</th>
+                <th> Spuan </th>
+                <th> A </th>
+                <th> B </th>
+                <th> C</th>
+                <th> D</th>
+                <th> E</th>
+                <th> DogruCevap </th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model.Sorularımdr._currentItems)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" id="chkCheckBoxid" name="sid" value="@item.Sid" />
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sturu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Smetni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Spuan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.A)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.B)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.D)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.E)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DogruCevap)
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+<div class="pull-left">
+    <a href="@Url.Action("SoruEkle", "SinavHazirla")" class="btn btn-primary glyphicon glyphicon-chevron-left"> GeriDön</a>
+</div>
+
+<div class="btn-group pull-right">
+
+    @if (Model.Sorularımdr.HasPreviousPage)
+    {
+        <a href="@Url.Action("Sinavlist", new { page = @Model.Sorularımdr.PreviousPage , d=@Model.dogru,t=Model.test,k=@Model.klasik})" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Previous Page</a>
+    }
+    else
+    {
+        <a href="#" class="btn btn-sm disabled btn-primary"> Previous Page</a>
+    }
+
+    @if (Model.Sorularımdr.HasNextPage)
+    {
+        <a href="@Url.Action("Sinavlist", new { page = @Model.Sorularımdr.NextPage , d=@Model.dogru,t=Model.test,k=@Model.klasik})" class="btn btn-sm btn-primary"> Next Page<i class="glyphicon glyphicon-chevron-right"></i></a>
+    }
+    else
+    {
+        <a href="#" class="btn btn-sm disabled btn-primary"> Next Page</a>
+    }
+</div>
 
 
 

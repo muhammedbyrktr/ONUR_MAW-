@@ -1,5 +1,76 @@
-﻿@{
+﻿@model SinavOtomasyonuProjesi.Models.Sinavlar
+@{
     ViewBag.Title = "SinavPdf";
 }
 
-<h2>SinavPdf</h2>
+<p>
+    <strong>
+        Ders        : @ViewBag.HangiDers
+    </strong>
+</p>
+<p>
+    <strong>
+        Sınav Tipi        : @ViewBag.Sınavtipi
+    </strong>
+</p>
+<p>
+    <strong>
+        Oluşturulma Tarihi        : @ViewBag.Sınavtarihi
+    </strong>
+</p><br />
+
+<h2>Soru Listesi</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Sturu</th>
+                <th>Smetni</th>
+                <th> Spuan </th>
+                <th> A </th>
+                <th> B </th>
+                <th> C</th>
+                <th> D</th>
+                <th> E</th>
+                <th> DogruCevap </th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model.SinavKagıdı)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sorular.Sturu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sorular.Smetni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sorular.Spuan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cevaplar.A)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cevaplar.B)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cevaplar.C)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cevaplar.D)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cevaplar.E)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cevaplar.DogruCevap)
+                </td>
+            </tr>
+        }
+              
+    </table>
+}
+<a href="@Url.Action("SoruEkle", "SinavHazirla")" class="btn btn-primary glyphicon glyphicon-chevron-left"> GeriDön</a>

@@ -33,6 +33,7 @@ namespace SinavOtomasyonuProjesi.Controllers
         [HttpPost]
         public ActionResult SoruEkle(Sinavlar form, string Dersler)
         {
+            
             H_id = Session["hid"].ToString();
             int hid = Convert.ToInt32(H_id);
             SınavProjesiEntities1 db = new SınavProjesiEntities1();
@@ -42,15 +43,17 @@ namespace SinavOtomasyonuProjesi.Controllers
                 Value = x.Ders_Adi
             });
 
-
+            _sinav = new Sinavlar();
             ViewBag.Dersler = derslist;
             ViewData["Dersler"] = derslist;
             ViewBag.Ders = Dersler;
-
-            _sinav.S_Hoca_id = hid;
-            _sinav.SınavTipi = form.SınavTipi.Trim();
-            _sinav.SınavTarihi = form.SınavTarihi;
-            _sinav.DersAdi = ViewBag.Ders = Dersler;
+          
+                _sinav.S_Hoca_id = hid;
+                _sinav.SınavTipi = form.SınavTipi.Trim();
+                _sinav.SınavTarihi = form.SınavTarihi;
+                _sinav.DersAdi = ViewBag.Ders = Dersler;
+           
+         
             //db.Sinavlar.Add(_sinav);
             //db.SaveChanges();
 
@@ -68,7 +71,7 @@ namespace SinavOtomasyonuProjesi.Controllers
             if (sec != null)
             {
                 string[] ids = button["sid"].Split(new char[] { ',' });
-                db.Sinavlar.Add(_sinav);
+                db.Sinavlar.Add(sinav);
                 foreach (var id in ids)
                 {
                     int a = Convert.ToInt32( id);
@@ -93,7 +96,7 @@ namespace SinavOtomasyonuProjesi.Controllers
                    
                 }
                 sinavım = db.Sinavlar.Where(x => x.Sınav_id == _sinav.Sınav_id).SingleOrDefault();
-                return null;
+                return RedirectToRoute("SinavPdf");
             }
             else { 
             
@@ -104,6 +107,9 @@ namespace SinavOtomasyonuProjesi.Controllers
             ViewBag.testSayi = db.Sorular.Where(x => x.Sturu == "Test" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
             ViewBag.dogruyanlisSayi = db.Sorular.Where(x => x.Sturu == "Doğru_Yanlış" && x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
             ViewBag.ToplamSoru = totalPostCount;
+            ViewBag.HangiDers = sinav.DersAdi;
+            ViewBag.Sınavtipi = sinav.SınavTipi;
+            ViewBag.Sınavtarihi = sinav.SınavTarihi;
             String a = button["durum"];
             if (a!=null)
             {
@@ -115,11 +121,6 @@ namespace SinavOtomasyonuProjesi.Controllers
           
             
             List<Soru> listSoru = new List<Soru>();
-            //if (sorular[0] == "hepsi" || sorular == null)
-            //{
-            //    totalPostCount = db.Sorular.Where(x => x.H_id == sinav.S_Hoca_id && x.Ders == sinav.DersAdi).Count();
-
-            //}
             if (k == false && d == false && t == true)
             {
                 totalPostCount = ViewBag.testSayi;
@@ -184,10 +185,13 @@ namespace SinavOtomasyonuProjesi.Controllers
             }
         }
 
-    
+
         public ActionResult SinavPdf()
         {
-            return View();
+            ViewBag.HangiDers = sinavım.DersAdi;
+            ViewBag.Sınavtipi = sinavım.SınavTipi;
+            ViewBag.Sınavtarihi = sinavım.SınavTarihi;
+            return View(sinavım);
         }
     }
 }
