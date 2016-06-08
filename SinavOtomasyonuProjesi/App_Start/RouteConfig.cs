@@ -51,11 +51,16 @@ namespace SinavOtomasyonuProjesi
             routes.MapRoute("Gizlilik İlkeleri", "Gizlilik İlkeleri", new { controller = "Yardımcı", action = "Gizlilik_İlkeleri" }, namespaces);
             routes.MapRoute("Kullanım Koşulları", "Kullanım Koşulları", new { controller = "Yardımcı", action = "Koşullar" }, namespaces);
             routes.MapRoute("İletişim", "İletişim", new { controller = "Yardımcı", action = "İletişim" }, namespaces);
-
+            
+            //SinavHazirla Controller
             routes.MapRoute("SoruEkle", "SoruEkle", new { controller = "SinavHazirla", action = "SoruEkle" }, namespaces);
             routes.MapRoute("SinavList", "SinavList", new { controller = "SinavHazirla", action = "SinavList" }, namespaces);
-            routes.MapRoute("SinavKagıdı", "SinavKagıdı", new { controller = "SinavHazirla", action = "SinavKagıdı" }, namespaces);
             routes.MapRoute("SinavPdf", "SinavPdf", new { controller = "SinavHazirla", action = "SinavPdf" }, namespaces);
+            routes.MapRoute("Pdf", "Pdf", new { controller = "SinavHazirla", action = "Pdf" }, namespaces);
+            routes.MapRoute("SinavlarımList", "SinavlarımList", new { controller = "SinavHazirla", action = "SinavlarımList" }, namespaces);
+            routes.MapRoute("SinavlarımDetails", "SinavlarımDetails", new { controller = "SinavHazirla", action = "SinavlarımDetails" }, namespaces);
+            routes.MapRoute("SinavlarımDelete", "SinavlarımDelete", new { controller = "SinavHazirla", action = "SinavlarımDelete" }, namespaces);
+          
         }
     }
 }

@@ -81,27 +81,30 @@
 }
 
 <h2>Soru Listesi</h2>
+
+<div class="pull-right">
+    <a href="@Url.Action("SoruEkle", "SinavHazirla")" class="btn btn-primary glyphicon glyphicon-chevron-left"> GeriDön</a>
+</div>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @*@Html.EditorForModel()*@
-    <div class="col-md-offset-2 col-md-10">
-        <button type="submit" id="sec" name="Sec" class="btn btn-sm  btn-primary">Secimi kaydet</button>
-    </div>
+
+    
 
     <table class="table table-striped">
         <thead>
             <tr>
                 <th> </th>
-                <th>Sturu</th>
-                <th>Smetni</th>
-                <th> Spuan </th>
-                <th> A </th>
-                <th> B </th>
-                <th> C</th>
-                <th> D</th>
-                <th> E</th>
-                <th> DogruCevap </th>
+                <th>Soru Türü</th>
+                <th>Soru Metni</th>
+                <th>Puan</th>
+                <th>A Şıkkı</th>
+                <th>B Şıkkı</th>
+                <th>C Şıkkı</th>
+                <th>D Şıkkı</th>
+                <th>E Şıkkı</th>
+                <th>Doğru Cevap</th>
             </tr>
         </thead>
 
@@ -141,11 +144,12 @@
         }
 
     </table>
+    <div class="pull-left">
+        <button type="submit" id="sec" name="Sec" class="btn btn-sm  btn-primary">Secimi kaydet</button>
+    </div>
 }
 
-<div class="pull-left">
-    <a href="@Url.Action("SoruEkle", "SinavHazirla")" class="btn btn-primary glyphicon glyphicon-chevron-left"> GeriDön</a>
-</div>
+
 
 <div class="btn-group pull-right">
 

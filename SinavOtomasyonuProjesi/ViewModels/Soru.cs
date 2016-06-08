@@ -9,13 +9,16 @@ using System.Web.WebPages.Html;
 
 namespace SinavOtomasyonuProjesi.ViewModels
 {
-    public class sinavkagıdı { 
-    public IEnumerable<SinavKagıdı> Sinavkagıdım { get; set; }
+    public class sinavkagıdı
+    {
+          public IEnumerable<SinavKagıdı> Sinavkagıdım { get; set; }
     }
+
     public class Sınavlarr
     {
-        public List< Sinavlar> Sinavlar { get; set; }
+          public List< Sinavlar> Sinavlar { get; set; }
     }
+
     public class Soru
     {
         public int Sid { get; set; }
@@ -47,6 +50,10 @@ namespace SinavOtomasyonuProjesi.ViewModels
         public PageData<Sorular> Sorularımm { get; set; }
     }
 
+    public class PageSinavList
+    {
+        public PageData<Sinavlar> Sinavlarim { get; set; }
+    }
     public class PageListV
     {
         public PageData<Soru> Sorularımdr { get; set; }

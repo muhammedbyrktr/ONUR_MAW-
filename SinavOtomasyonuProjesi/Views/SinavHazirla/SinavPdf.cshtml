@@ -20,57 +20,61 @@
 </p><br />
 
 <h2>Soru Listesi</h2>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Sturu</th>
-                <th>Smetni</th>
-                <th> Spuan </th>
-                <th> A </th>
-                <th> B </th>
-                <th> C</th>
-                <th> D</th>
-                <th> E</th>
-                <th> DogruCevap </th>
-            </tr>
-        </thead>
+<div class="btn-group pull-right">
+    <a href="@Url.Action("SoruEkle", "SinavHazirla")" class="btn btn-primary" ><i class=" glyphicon glyphicon-chevron-left"></i> GeriDön</a>
+    <a href="@Url.Action("Pdf", "SinavHazirla")" class="btn btn-danger"><i class="glyphicon glyphicon-download"></i> PDF_indir</a>
+</div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Soru Türü</th>
+                    <th>Soru Metni</th>
+                    <th>Puan</th>
+                    <th>A Şıkkı</th>
+                    <th>B Şıkkı</th>
+                    <th>C Şıkkı</th>
+                    <th>D Şıkkı</th>
+                    <th>E Şıkkı</th>
+                    <th>Doğru Cevap</th>
+                </tr>
+            </thead>
 
-        @foreach (var item in Model.SinavKagıdı)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sorular.Sturu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sorular.Smetni)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sorular.Spuan)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cevaplar.A)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cevaplar.B)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cevaplar.C)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cevaplar.D)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cevaplar.E)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cevaplar.DogruCevap)
-                </td>
-            </tr>
-        }
-              
-    </table>
-}
-<a href="@Url.Action("SoruEkle", "SinavHazirla")" class="btn btn-primary glyphicon glyphicon-chevron-left"> GeriDön</a>
+            @foreach (var item in Model.SinavKagıdı)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sorular.Sturu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sorular.Smetni)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sorular.Spuan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cevaplar.A)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cevaplar.B)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cevaplar.C)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cevaplar.D)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cevaplar.E)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cevaplar.DogruCevap)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+

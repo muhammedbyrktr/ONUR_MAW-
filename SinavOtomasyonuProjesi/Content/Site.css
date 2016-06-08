@@ -3,11 +3,35 @@
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     color: #232323;
     background-color: #fff;
+    font-size: 14px;
+    background: url(Content/img/background.png);
+ 
+}
+#container{
+    width: 1200px auto; 
+     padding: 13px 16px;
+      position: relative;
+      margin: auto;
+       margin-top: 13px;
+    box-shadow: 0 0 10px #1c3564;
+     border-radius: 0 26px;
+    background-color:#ddd;
 }
 
-header, footer, nav, section {
-    display: block;
+
+h1{
+    width: 1000px; 
+    height: 120px;
+     position: relative; 
+     transition: opacity .3s ease-in-out;
+     cursor: pointer;
+float:left;
+ color: #000;
+  text-shadow: 4px 4px 8px #00bfff;
 }
+
+
+
 
 
 /* Styles for basic forms
@@ -58,4 +82,9 @@ textarea {
 
 .validation-summary-valid {
     display: none;
+}
+
+
+.home-page{
+
 }

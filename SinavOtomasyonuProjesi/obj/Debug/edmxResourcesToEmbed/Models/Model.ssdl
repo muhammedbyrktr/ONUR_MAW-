@@ -73,7 +73,9 @@
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_SinavKagıdı_Cevaplar">
-    <End Role="Cevaplar" Type="Self.Cevaplar" Multiplicity="0..1" />
+    <End Role="Cevaplar" Type="Self.Cevaplar" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Cevaplar">
@@ -85,7 +87,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SinavKagıdı_Sinavlar">
-    <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="1" />
+    <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Sinavlar">
@@ -97,7 +101,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SinavKagıdı_Sorular">
-    <End Role="Sorular" Type="Self.Sorular" Multiplicity="1" />
+    <End Role="Sorular" Type="Self.Sorular" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Sorular">

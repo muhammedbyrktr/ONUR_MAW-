@@ -6,16 +6,18 @@
 
 <h2>Doğru-YanlışSoruListesi</h2>
 
+<div class="pull-right">
+    <a href="@Url.Action("Profilim", "Soru")" class="btn btn-primary glyphicon glyphicon-chevron-left"> ProfileDön</a>
+</div>
+
 <table class="table table-striped">
     <thead>
         <tr>
-            <th> Sid </th>
-            <th>  Sturu </th>
-            <th> Smetni</th>
-            <th> Ders</th>
-            <th> H_id</th>
-            <th> Spuan </th>
-            <th> DogruCevap </th>
+            <th>Soru Türü</th>
+            <th>Soru Metni</th>
+            <th>Ders</th>
+            <th>Puan</th>
+            <th>Doğru Cevap</th>
             <th></th>
         </tr>
     </thead>
@@ -24,9 +26,6 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Sid)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Sturu)
             </td>
             <td>
@@ -34,9 +33,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Ders)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.H_id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Spuan)
@@ -56,8 +52,9 @@
 
 </table>
 
-<div class="pull-left">
-    <a href="@Url.Action("Profilim", "Soru")" class="btn btn-primary glyphicon glyphicon-chevron-left"> Profile Dön</a>
+<div class="btn-group pull-left">
+    <a href="@Url.Action("Klasiklist", "SoruIslemlerı")" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i>Klasik_Listele</a>
+    <a href="@Url.Action("Testlist", "SoruIslemlerı")" class="btn btn-primary">Test_Listele<i class="glyphicon glyphicon-chevron-right"></i></a>
 </div>
 
 <div class="btn-group pull-right">

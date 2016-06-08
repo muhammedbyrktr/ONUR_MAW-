@@ -7,8 +7,8 @@
 
 
     <div class="btn-group-vertical" role="group" aria-label="...">
-        <a href="@Url.Action("Düzenle","Soru")" class="btn btn-sm  btn-info" >Profili Düzenle</a>
-        <a href="@Url.Action("Profilim","Soru")" class="btn btn-sm  btn-info">Profilim</a>
+        <a href="@Url.Action("Düzenle","Soru")" class="btn btn-sm  btn-info" >Profil Düzenleme Modülü</a>
+        <a href="@Url.Action("Profilim","Soru")" class="btn btn-sm  btn-info">Profil Modülü</a>
 
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -33,8 +33,9 @@
                 <li>@Html.RouteLink("Doğru Yanlış", "soru11")</li>
             </ul>
         </div>
-        <a href="@Url.Action("DersEkle", "Dersler")" class="btn btn-sm  btn-info">Ders Ekle</a>
-        <a href="@Url.Action("SoruEkle", "SinavHazirla")" class="btn btn-sm  btn-info">Sınav Oluştur</a>
+        <a href="@Url.Action("DersEkle", "Dersler")" class="btn btn-sm  btn-info">Ders Ekleme Modülü</a>
+        <a href="@Url.Action("SoruEkle", "SinavHazirla")" class="btn btn-sm  btn-info">Sınav Oluşturma Modülü</a>
+        <a href="@Url.Action("SinavlarımList", "SinavHazirla")" class="btn btn-sm  btn-info">Sınav Listeleme Modülü</a>
         <a href="/Logout" class="btn btn-sm  btn-default">Çıkış</a><br>
     </div>
 

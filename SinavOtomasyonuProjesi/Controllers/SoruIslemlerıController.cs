@@ -16,7 +16,7 @@ namespace SinavOtomasyonuProjesi.Controllers
         string soruTuru = "";
         string H_id = "";
         public static string message = "";
-        private static int postsPerPage = 5;
+        private static int postsPerPage = 10;
         public ActionResult Klasiklist(int page=1)
         {
            
@@ -86,7 +86,7 @@ namespace SinavOtomasyonuProjesi.Controllers
 
                 return null;
             }
-            return View();
+         
 
         }
 
@@ -98,29 +98,45 @@ namespace SinavOtomasyonuProjesi.Controllers
                 using (SınavProjesiEntities1 db = new SınavProjesiEntities1())
                 {
                     Sorular soru = db.Sorular.FirstOrDefault(x => x.Sid == id);
-                    if (soru != null)
+                    List<SinavKagıdı> sinavkagidi = new List<SinavKagıdı>();
+
+                    sinavkagidi = db.SinavKagıdı.Where(x => x.SoruId == soru.Sid).ToList();
+                    if (sinavkagidi.Count() != 0)
                     {
+                        foreach (var item in sinavkagidi)
+                        {
+                            db.SinavKagıdı.Remove(item);
+                            db.SaveChanges();
+                        }
+
+
                         db.Sorular.Remove(soru);
                         db.SaveChanges();
                         return RedirectToRoute("soru5");
+
                     }
-
-
                     else
                     {
-                        return RedirectToRoute("soru5");
+                        if (soru != null)
+                        {
+
+                            db.Sorular.Remove(soru);
+                            db.SaveChanges();
+                            return RedirectToRoute("soru5");
+                        }
+                        else
+                        {
+                            return RedirectToRoute("soru5");
+                        }
+
                     }
-
-
                 }
             }
             catch (Exception e)
             {
 
-                return null;
+                return RedirectToRoute("soru5");
             }
-
-            return View();
         }
 
         public ActionResult Testlist(int page=1)
@@ -244,21 +260,21 @@ namespace SinavOtomasyonuProjesi.Controllers
                         }
                         else
                         {
-                            return null;
+                            return View();
                         }
                     }
                     else
                     {
-                        return null;
+                        return View();
                     }
                 }
             }
             catch (Exception e)
             {
 
-                return null;
+                return View();
             }
-            return View();
+          
         }
         public ActionResult Testdelete(int id)
         {
@@ -268,30 +284,50 @@ namespace SinavOtomasyonuProjesi.Controllers
                 {
                     Sorular soru = db.Sorular.FirstOrDefault(x => x.Sid == id);
                     Cevaplar cevap = db.Cevaplar.FirstOrDefault(x => x.Sid == id);
-                    if (soru != null)
+                    List<SinavKagıdı> sinavkagidi = new List<SinavKagıdı>();
+                    
+                    sinavkagidi = db.SinavKagıdı.Where(x => x.SoruId==soru.Sid).ToList();
+                    if (sinavkagidi.Count() != 0)
                     {
+                        foreach (var item in sinavkagidi)
+                        {
+                            db.SinavKagıdı.Remove(item);
+                            db.SaveChanges();
+                        }
+                        
+                       
                         db.Sorular.Remove(soru);
                         db.Cevaplar.Remove(cevap);
                         db.SaveChanges();
                         return RedirectToRoute("soru8");
+                   
                     }
-
-
                     else
                     {
-                        return RedirectToRoute("soru8");
+                        if (soru != null || cevap != null)
+                        {
+
+                            db.Sorular.Remove(soru);
+                            db.Cevaplar.Remove(cevap);
+                            db.SaveChanges();
+                            return RedirectToRoute("soru8");
+                        }
+                        else
+                        {
+                            return RedirectToRoute("soru8");
+                        }
+
                     }
-
-
                 }
+
             }
             catch (Exception e)
             {
 
-                return null;
+                return RedirectToRoute("soru8");
             }
 
-            return View();
+            
         }
 
         public ActionResult dogruyanlıslist(int page=1)
@@ -412,9 +448,9 @@ namespace SinavOtomasyonuProjesi.Controllers
             catch (Exception e)
             {
 
-                return null;
+                return View();
             }
-            return View();
+       
 
         }
         public ActionResult dogruyanlısdelete(int id)
@@ -425,30 +461,49 @@ namespace SinavOtomasyonuProjesi.Controllers
                 {
                     Sorular soru = db.Sorular.FirstOrDefault(x => x.Sid == id);
                     Cevaplar cevap = db.Cevaplar.FirstOrDefault(x => x.Sid == id);
-                    if (soru != null)
+                    List<SinavKagıdı> sinavkagidi = new List<SinavKagıdı>();
+
+                    sinavkagidi = db.SinavKagıdı.Where(x => x.SoruId == soru.Sid).ToList();
+                    if (sinavkagidi.Count() != 0)
                     {
+                        foreach (var item in sinavkagidi)
+                        {
+                            db.SinavKagıdı.Remove(item);
+                            db.SaveChanges();
+                        }
+
+
                         db.Sorular.Remove(soru);
                         db.Cevaplar.Remove(cevap);
                         db.SaveChanges();
                         return RedirectToRoute("soru11");
+
                     }
-
-
                     else
                     {
-                        return RedirectToRoute("soru11");
+                        if (soru != null || cevap != null)
+                        {
+
+                            db.Sorular.Remove(soru);
+                            db.Cevaplar.Remove(cevap);
+                            db.SaveChanges();
+                            return RedirectToRoute("soru11");
+                        }
+                        else
+                        {
+                            return RedirectToRoute("soru11");
+                        }
+
                     }
-
-
                 }
             }
             catch (Exception e)
             {
 
-                return null;
+                return RedirectToRoute("soru11");
             }
 
-            return View();
+          
         }
 
     }

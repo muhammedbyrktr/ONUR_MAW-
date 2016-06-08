@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SınavProjesiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SınavProjesiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cevaplar">
           <Key>
             <PropertyRef Name="Cid" />
@@ -78,7 +78,9 @@
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_SinavKagıdı_Cevaplar">
-          <End Role="Cevaplar" Type="Self.Cevaplar" Multiplicity="0..1" />
+          <End Role="Cevaplar" Type="Self.Cevaplar" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cevaplar">
@@ -90,7 +92,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SinavKagıdı_Sinavlar">
-          <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="1" />
+          <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sinavlar">
@@ -102,7 +106,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SinavKagıdı_Sorular">
-          <End Role="Sorular" Type="Self.Sorular" Multiplicity="1" />
+          <End Role="Sorular" Type="Self.Sorular" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sorular">
@@ -134,7 +140,8 @@
             <End Role="SinavKagıdı" EntitySet="SinavKagıdı" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SınavProjesiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -175,7 +182,7 @@
           <Key>
             <PropertyRef Name="SinavKagidiId" />
           </Key>
-          <Property Name="SinavKagidiId" Type="Int32" Nullable="false" />
+          <Property Name="SinavKagidiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SoruId" Type="Int32" Nullable="false" />
           <Property Name="CevapId" Type="Int32" />
           <Property Name="SınavId" Type="Int32" Nullable="false" />
@@ -217,7 +224,9 @@
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_SinavKagıdı_Cevaplar">
-          <End Role="Cevaplar" Type="Self.Cevaplar" Multiplicity="0..1" />
+          <End Role="Cevaplar" Type="Self.Cevaplar" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cevaplar">
@@ -229,7 +238,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SinavKagıdı_Sinavlar">
-          <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="1" />
+          <End Role="Sinavlar" Type="Self.Sinavlar" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sinavlar">
@@ -241,7 +252,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SinavKagıdı_Sorular">
-          <End Role="Sorular" Type="Self.Sorular" Multiplicity="1" />
+          <End Role="Sorular" Type="Self.Sorular" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SinavKagıdı" Type="Self.SinavKagıdı" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sorular">

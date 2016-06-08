@@ -6,27 +6,22 @@
 
 <h2>Ders Listele</h2>
 
+<div class="pull-right">
+    <a href="@Url.Action("DersEkle", "Dersler")" class="btn btn-primary glyphicon glyphicon-chevron-left"> GeriDön</a>
+</div>
 
 <table class="table table-striped">
-
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Ders_Adi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hoca_id)
-        </th>
-        <th></th>
-    </tr>
-
+    <thead>
+        <tr>
+            <th>Ders Adı</th>
+            <th></th>
+        </tr>
+    </thead>
     @foreach (var item in Model)
     {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Ders_Adi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hoca_id)
             </td>
             <td>
                 <div class="btn-group">
@@ -38,6 +33,3 @@
     }
 
 </table>
-<div class="pull-left">
-    <a href="@Url.Action("DersEkle", "Dersler")" class="btn btn-primary glyphicon glyphicon-chevron-left"> Geri Dön</a>
-</div>

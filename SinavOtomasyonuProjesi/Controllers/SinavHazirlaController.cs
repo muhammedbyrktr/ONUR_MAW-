@@ -1,8 +1,11 @@
-﻿using SinavOtomasyonuProjesi.Infrastructure;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using SinavOtomasyonuProjesi.Infrastructure;
 using SinavOtomasyonuProjesi.Models;
 using SinavOtomasyonuProjesi.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -62,7 +65,7 @@ namespace SinavOtomasyonuProjesi.Controllers
         }
 
         private SınavProjesiEntities1 db = new SınavProjesiEntities1();
-        private static int postsPerPage = 5;
+        private static int postsPerPage = 10;
         private static Models.Sinavlar sinavım =new Models.Sinavlar();
         public ActionResult SinavList(Sinavlar sinav, PageListV form, FormCollection button , bool k=false, bool d = false, bool t = false, int page = 1)
         {
@@ -192,6 +195,106 @@ namespace SinavOtomasyonuProjesi.Controllers
             ViewBag.Sınavtipi = sinavım.SınavTipi;
             ViewBag.Sınavtarihi = sinavım.SınavTarihi;
             return View(sinavım);
+        }
+        public ActionResult Pdf(FormCollection form)
+        {
+
+            Document doc = new Document(new iTextSharp.text.Rectangle(288f, 144f), 10, 10, 10, 10); //yeni bir döküman oluşturuyoruz.
+            PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream(sinavım.SınavTipi+".pdf", FileMode.Create)); // dosyamıza bir ad veriyoruz ve yazılabilir hale getiriyoruz.
+            doc.SetPageSize(iTextSharp.text.PageSize.A4); //pdfin ebatlarını belirliyoruz.
+            doc.Open(); //dosyayla olan bağlantıyı açıyoruz ve böylelikle artık içerisine bir şeyler yazabilir hale getiriyoruz.
+            Paragraph paragraf = new Paragraph("Trakya Üniversitesi" + "Bilgisayar Mühendisliği" + sinavım.DersAdi + sinavım.SınavTipi + "Sınavı");
+            doc.Add(paragraf);
+            RomanList roman = new RomanList(true, 20);
+            roman.IndentationLeft = 30f;
+            foreach (var item in sinavım.SinavKagıdı)
+            {
+                if (item.Sorular.Sturu == "Test")
+                {
+                    roman.Add(item.Sorular.Smetni);
+                    roman.Add(item.Cevaplar.A);
+                    roman.Add(item.Cevaplar.B);
+                    roman.Add(item.Cevaplar.C);
+                    roman.Add(item.Cevaplar.D);
+                    roman.Add(item.Cevaplar.E);
+                }
+                else
+                {
+                    roman.Add(item.Sorular.Smetni);
+                   
+                }
+            }
+            List list = new List(List.ORDERED, 40f);
+            list.IndentationLeft = 40f;
+            list.Add(roman);
+            doc.Add(list);
+            doc.Close();
+            System.Diagnostics.Process.Start(@sinavım.SınavTipi+".pdf");
+            return View();
+        }
+
+
+        public ActionResult SinavlarımList(int page=1)
+        {
+          
+            H_id = Session["Hid"].ToString();
+            int hid = Convert.ToInt32(H_id);
+            using (SınavProjesiEntities1 db = new SınavProjesiEntities1())
+            {
+                var query = db.Sinavlar.ToList();
+                var result = query.Where(x => x.S_Hoca_id == hid).OrderBy(x => x.Sınav_id).Skip((page - 1) * postsPerPage).Take(postsPerPage).ToList();
+                int totalPostCount =query.Where(x => x.S_Hoca_id == hid).Count();
+                return View(new PageSinavList(){
+                Sinavlarim= new PageData<Sinavlar>(result, totalPostCount, page, postsPerPage)});
+
+            }
+        }
+
+        public ActionResult SinavlarımDetails(int id)
+        {
+            SınavProjesiEntities1 db = new SınavProjesiEntities1();
+            List<SinavKagıdı> details = new List<SinavKagıdı>();
+            details = db.SinavKagıdı.Where(x => x.SınavId == id).ToList();
+            return View(details);
+        }
+        public ActionResult SinavlarımDelete(int id)
+        {
+            try
+            {
+                using (SınavProjesiEntities1 db = new SınavProjesiEntities1())
+                {
+                    Sinavlar Sinavdelete = db.Sinavlar.FirstOrDefault(x => x.Sınav_id == id);
+                    List<SinavKagıdı> S_sorusil = new List<SinavKagıdı>();
+                    S_sorusil=db.SinavKagıdı.Where(x => x.SınavId == id).ToList();
+                    if (Sinavdelete != null && S_sorusil !=null)
+                    {
+                        foreach (var item in S_sorusil)
+                        {
+                            db.SinavKagıdı.Remove(item);
+                            db.SaveChanges();
+                        }
+                     
+                        db.Sinavlar.Remove(Sinavdelete);
+                        db.SaveChanges();
+                        return RedirectToRoute("SinavlarımList");
+                    }
+
+
+                    else
+                    {
+
+                        return RedirectToRoute("SinavlarımList");
+                    }
+
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                return null;
+            }
+
         }
     }
 }

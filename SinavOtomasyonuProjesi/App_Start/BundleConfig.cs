@@ -23,7 +23,11 @@ namespace SinavOtomasyonuProjesi
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Site.css").Include("~/content/bootstrap.css"));
+            bundles.Add(new StyleBundle("~/Content/css")
+                .Include("~/Content/Site.css")
+                 .Include("~/Content/main.css")
+                  .Include("~/Content/Datafilter.css")
+                .Include("~/content/bootstrap.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

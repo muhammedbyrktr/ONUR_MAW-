@@ -2,18 +2,144 @@
     ViewBag.Title = "Yardım";
    
 }
+<script language="javascript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<link href="Content/Datafilter.css" rel="stylesheet">
+@*<div align="center">
+        <video id="video" poster="Content/img/logotrakya.png" controls>
+            <source src="video/AykutElmas.mp4" type="video/mp4">
 
+            Üzgünüz, Tarayıcınız bu videoyu desteklemıyor!
+        </video>
 
-<div align="center">
-    <video id="video" poster="Content/img/logotrakya.png" controls>
-        <source src="video/AykutElmas.mp4" type="video/mp4">
+    </div> *@
 
-        Üzgünüz, Tarayıcınız bu videoyu desteklemıyor!
-    </video>
+<div id="containe">
     
-</div> 
+        <ul id="filterOptions">
+            <li class="active"><a href="#" class="all">Tüm Videolar</a></li>
+            <li><a href="#" class="prem">AnaSayfa</a></li>
+            <li><a href="#" class="champ">Profilim</a></li>
+            <li><a href="#" class="league1">Ders Ekle</a></li>
+            <li><a href="#" class="league2">Soru Ekleme Modülü</a></li>
+            <li><a href="#" class="Sorulisteleme">Soru Listeleme Modülü</a></li>
+            <li><a href="#" class="Sınavkağıdı">Sınav Kağıdı</a></li>
+        </ul>
+        
+        <div id="ourHolder">
+      
+          
+            <div class="item prem" align="center">
+                <div class="item league2">
+                    <video width="500" controls>
+                        <source src="Video/giriş1.mp4" type="video/mp4">
+                        
+                        Your browser does not support HTML5 video.
+                    </video>
+                    <h3>AnaSayfa Yardım Videosuna Hoşgeldiniz (Part-1)...</h3>
+                </div>
+            </div>
+            <div class="item prem" align="center">
+                <div class="item league2">
+                    <video width="500" controls>
+                        <source src="Video/giris2 (1).mp4" type="video/mp4">
 
+                        Your browser does not support HTML5 video.
+                    </video>
+                    <h3>AnaSayfa Yardım Videosuna Hoşgeldiniz(Part-2)...</h3>
+                </div>
+            </div>
+            <div class="item league2">
+                <video width="500" controls>
+                    <source src="Video/Soru Ekleme.mp4" type="video/mp4">
+                    <source src="Video/giriş ekranı.png" type="video/ogg">
+                    Your browser does not support HTML5 video.
+                </video>
+                <h3>Soru Ekleme Yardım Videosuna Hoşgeldiniz...</h3>
+            </div>
+            <div class="item champ">
+                <div class="item league2">
+                    <video width="500" controls >
+                        <source src="Video/profilim (1).mp4" type="video/mp4">
+                        <source src="Video/giriş ekranı.png" type="video/ogg">
+                        Your browser does not support HTML5 video.
+                    </video>
+                    <h3>Profilim Yardım Videosuna Hoşgeldiniz...</h3>
+                </div>
+               
+            </div>
+         
+           
+         
+           
+         
+    
+            <div class="item league1">
+                <div class="item league2">
+                    <video width="500" controls>
+                        <source src="Video/dersekle.mp4" type="video/mp4">
+                        <source src="Video/giriş ekranı.png" type="video/ogg">
+                        Your browser does not support HTML5 video.
+                    </video>
+                    <h3>Ders Ekleme Yardım Videosuna Hoşgeldiniz...</h3>
+                </div>
+            </div>
+            <div class="item Sorulisteleme">
+                
+                    <video width="500"  controls>
+                        <source src="Video/Listeleme (1).mp4" type="video/mp4">
+                        <source src="Video/giriş ekranı.png" type="video/ogg">
+                        Your browser does not support HTML5 video.
+                    </video>
+                <h3>Soru Listeleme Yardım Videosuna Hoşgeldiniz...</h3>
+                
+            </div>
+            <div class="item Sınavkağıdı">
+                <div class="item league2">
+                    <video width="500" controls>
+                        @*<source src="Video/profilim (1).mp4" type="video/mp4">
+                        <source src="Video/giriş ekranı.png" type="video/ogg">*@
+                        Your browser does not support HTML5 video.
+                    </video>
+                    <h3>Sınav Kağıdı Oluşturma Yardım Videosuna Hoşgeldiniz...</h3>
+                </div>
+            </div>
+          
+           
+        </div>
+    </div>
+
+
+@*<a href="@Url.Action("Index","Posts")" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-arrow-left"></i>  Giriş Yap</a>
+<a href="@Url.Action("CreateUser","Posts")" class="btn btn-sm  btn-primary"><i class="glyphicon glyphicon-plus"></i>Kaydol</a>*@
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#filterOptions li a').click(function () {
+            // fetch the class of the clicked item
+            var ourClass = $(this).attr('class');
+
+            // reset the active class on all the buttons
+            $('#filterOptions li').removeClass('active');
+            // update the active state on our clicked button
+            $(this).parent().addClass('active');
+
+            if (ourClass == 'all') {
+                // show all our items
+                $('#ourHolder').children('div.item').show();
+            }
+            else {
+                // hide all elements that don't share ourClass
+                $('#ourHolder').children('div:not(.' + ourClass + ')').hide();
+                // show all elements that do share ourClass
+                $('#ourHolder').children('div.' + ourClass).show();
+            }
+            return false;
+        });
+    });
+</script>
 <a href="@Url.Action("Index","Posts")" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-arrow-left"></i>  Giriş Yap</a>
-<a href="@Url.Action("CreateUser","Posts")" class="btn btn-sm  btn-primary"><i class="glyphicon glyphicon-plus"></i>Kaydol</a>
-
-
+<a href="@Url.Action("CreateUser", "Posts")" class="btn btn-sm  btn-primary"><i class="glyphicon glyphicon-plus"></i>Kaydol</a>
